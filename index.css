@@ -1,0 +1,17 @@
+#logo {
+  height: 50px;
+  width: 200px;
+}
+
+.presentationImg {
+  height: 526px;
+  width: 358px;
+  -webkit-clip-path: circle(25%);
+          clip-path: circle(25%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+/*# sourceMappingURL=index.css.map */

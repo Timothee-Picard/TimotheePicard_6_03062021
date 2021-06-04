@@ -1,1 +1,77 @@
 @import '../shared.scss';
+.header {
+    max-width: 1440px;
+    margin: auto;
+    margin-top: 50px;
+}
+main {
+    max-width: 1440px;
+    margin: auto;
+    header {
+        padding: 0 34px;
+        display: flex;
+        align-items: center;
+        h1 {
+            font-size: 64px;
+            color: $orange-color;
+        }
+        address {
+            font-size: 24px;
+            margin-bottom: 19px;
+        }
+        p,span {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        span,address {
+            color: $red-color;
+        }
+        .filters {
+            display: flex;
+            span {
+                margin: 0 10px;
+            }
+        }
+        div {
+            width: 33.33%;
+        }
+        button {
+            height: 69px;
+            width: 170px;
+            color: white;
+            border: none;
+            font-size: 20px;
+            font-weight: 700;
+            background-color: $red-color;
+        }
+    }
+    select {
+        background-color: $red-color;
+        color: white;
+    }
+    .feed{
+        display: flex;
+        flex-wrap: wrap;
+        article {
+            width: 33%;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            figure {
+                height: 300px;
+                width: 350px;
+                img {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                }
+                p{
+                    text-align: left;
+                }
+                span{
+                    float: right;
+                }
+            }
+        }
+    }
+}

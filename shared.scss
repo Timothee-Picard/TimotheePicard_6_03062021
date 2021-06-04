@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+$orange-color: #D3573C;
+$red-color: #901C1C;
+$beige-color: #DB8876;
+#logo {
+    height: 50px;
+    width: 200px;
+}
+.presentationImg {
+    height: 526px;
+    width: 358px;
+    clip-path: circle(25%);
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+h1,h2,p,span,button,label {
+    font-family: 'DM Sans', sans-serif;
+}

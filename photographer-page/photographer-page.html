@@ -5,37 +5,99 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fishoye - Photographe NOM_PHOTOGRAPHE</title>
+    <script src="https://kit.fontawesome.com/dfff5e71e8.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./photographer-page.css">
 </head>
 <body>
-    <header>
-        <img src="../assets/logo.png" alt="">
+    <header class="header">
+        <a href="../index.html">
+            <img src="../assets/logo.png" alt="" id="logo">
+        </a>
     </header>
     <main>
         <header>
-            <h1>Mimi Keel</h1>
-            <address>London, UK</address>
-            <p>Voir le beau dans le quotidien</p>
             <div>
-                <span>#Portrait</span>
-                <span>#Events</span>
-                <span>#Travel</span>
-                <span>#Animals</span>
+                <h1>Mimi Keel</h1>
+                <address>London, UK</address>
+                <p>Voir le beau dans le quotidien</p>
+                <div class="filters">
+                    <span>#Portrait</span>
+                    <span>#Events</span>
+                    <span>#Travel</span>
+                    <span>#Animals</span>
+                </div>
             </div>
-            <button>Contactez-moi</button>
-            <img src="../assets/Mimi/Portrait_Nora.jpg" alt="">
+            <div>
+                <button>Contactez-moi</button>
+            </div>
+            <div>
+                <img src="../assets/Mimi/Portrait_Nora.jpg" alt="" class="presentationImg">
+            </div>
         </header>
-        <label for="sort"></label>
+        <label for="sort">Trier par</label>
         <select name="sort" id="sort">
             <option value="popularity">Popularité</option>
             <option value="date">Date</option>
             <option value="title">Titre</option>
         </select>
-        <figure>
-            <img src="../assets/Mimi/Animals_Rainbow.jpg" alt="">
-            <figcaption>
-                <p>Arc-en-cie <i>hearth</i></p>
-            </figcaption>
-        </figure>
+        <div class="feed">
+            <article>
+                <figure>
+                    <img src="../assets/Mimi/Animals_Rainbow.jpg" alt="">
+                    <figcaption>
+                        <p>Arc-en-cie <span>12<i class="fas fa-heart"></i></span></p>
+                    </figcaption>
+                </figure>
+            </article>
+            <article>
+                <figure>
+                    <img src="../assets/Mimi/Animals_Rainbow.jpg" alt="">
+                    <figcaption>
+                        <p>Arc-en-cie <span>12<i class="fas fa-heart"></i></span></p>
+                    </figcaption>
+                </figure>
+            </article>
+            <article>
+                <figure>
+                    <img src="../assets/Mimi/Animals_Rainbow.jpg" alt="">
+                    <figcaption>
+                        <p>Arc-en-cie <span>12<i class="fas fa-heart"></i></span></p>
+                    </figcaption>
+                </figure>
+            </article>
+            <article>
+                <figure>
+                    <img src="../assets/Mimi/Animals_Rainbow.jpg" alt="">
+                    <figcaption>
+                        <p>Arc-en-cie <span>12<i class="fas fa-heart"></i></span></p>
+                    </figcaption>
+                </figure>
+            </article>
+            <article>
+                <figure>
+                    <img src="../assets/Mimi/Animals_Rainbow.jpg" alt="">
+                    <figcaption>
+                        <p>Arc-en-cie <span>12<i class="fas fa-heart"></i></span></p>
+                    </figcaption>
+                </figure>
+            </article>
+            <article>
+                <figure>
+                    <img src="../assets/Mimi/Animals_Rainbow.jpg" alt="">
+                    <figcaption>
+                        <p>Arc-en-cie <span>12<i class="fas fa-heart"></i></span></p>
+                    </figcaption>
+                </figure>
+            </article>
+            <article>
+                <figure>
+                    <img src="../assets/Mimi/Animals_Rainbow.jpg" alt="">
+                    <figcaption>
+                        <p>Arc-en-cie <span>12<i class="fas fa-heart"></i></span></p>
+                    </figcaption>
+                </figure>
+            </article>
+        </div>
     </main>
     <script src="./photographer-page.js"></script>
 </body>

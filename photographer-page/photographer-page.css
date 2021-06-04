@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap");
+#logo {
+  height: 50px;
+  width: 200px;
+}
+
+.presentationImg {
+  height: 526px;
+  width: 358px;
+  -webkit-clip-path: circle(25%);
+          clip-path: circle(25%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, p, span, button, label {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.header {
+  max-width: 1440px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+main {
+  max-width: 1440px;
+  margin: auto;
+}
+
+main header {
+  padding: 0 34px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main header h1 {
+  font-size: 64px;
+  color: #D3573C;
+}
+
+main header address {
+  font-size: 24px;
+  margin-bottom: 19px;
+}
+
+main header p, main header span {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+main header span, main header address {
+  color: #901C1C;
+}
+
+main header .filters {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main header .filters span {
+  margin: 0 10px;
+}
+
+main header div {
+  width: 33.33%;
+}
+
+main header button {
+  height: 69px;
+  width: 170px;
+  color: white;
+  border: none;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: #901C1C;
+}
+
+main select {
+  background-color: #901C1C;
+  color: white;
+}
+
+main .feed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+main .feed article {
+  width: 33%;
+  margin-bottom: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main .feed article figure {
+  height: 300px;
+  width: 350px;
+}
+
+main .feed article figure img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main .feed article figure p {
+  text-align: left;
+}
+
+main .feed article figure span {
+  float: right;
+}
+/*# sourceMappingURL=photographer-page.css.map */
