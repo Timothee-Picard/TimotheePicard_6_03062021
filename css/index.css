@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap");
 #logo {
   height: 50px;
   width: 200px;
@@ -13,5 +14,129 @@
 * {
   margin: 0;
   padding: 0;
+}
+
+h1, h2, p, span, button, label {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.header {
+  max-width: 1440px;
+  margin: auto;
+  padding-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header nav span {
+  margin: 0 5px;
+  font-size: 12px;
+  color: #901C1C;
+  border: solid 1px #C4C4C4;
+  border-radius: 11px;
+  padding: 2px 7px;
+}
+
+.header a {
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  left: 50%;
+  top: 20px;
+  width: 182px;
+  padding: 6px 0;
+  background-color: #DB8876;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.header > * {
+  width: 33.33%;
+}
+
+main {
+  max-width: 1440px;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  position: relative;
+}
+
+main h1 {
+  position: absolute;
+  top: -50px;
+  right: 6%;
+  font-size: 36px;
+}
+
+main article {
+  width: 33.33%;
+  text-align: center;
+}
+
+main article h2 {
+  margin-top: -3em;
+}
+
+main article h2 a {
+  font-size: 36px;
+  color: #D3573C;
+  text-decoration: none;
+}
+
+main article address {
+  font-size: 13px;
+  color: #901C1C;
+}
+
+main article p {
+  font-size: 10px;
+}
+
+main article .price {
+  font-size: 9px;
+  color: #757575;
+}
+
+main article footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 10px;
+}
+
+main article footer span {
+  margin: 0 5px;
+  font-size: 12px;
+  color: #D3573C;
+  border: solid 1px #C4C4C4;
+  border-radius: 11px;
+  padding: 2px 7px;
 }
 /*# sourceMappingURL=index.css.map */
