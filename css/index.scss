@@ -5,12 +5,14 @@
     margin: auto;
     padding-top: 50px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     nav {
         display: flex;
+        margin-left: -7em;
         span {
-            margin: 0 5px;
+            margin: 3px 5px;
             font-size: 12px;
             color: $red-color;
             border: solid 1px $lightGray-color;
@@ -40,6 +42,7 @@
 main {
     max-width: 1440px;
     margin: auto;
+    margin-bottom: 3em;
     display: flex;
     flex-wrap: wrap;
     justify-content:space-evenly;
@@ -51,7 +54,7 @@ main {
         font-size: 36px;
     }
     article {
-        width: 33.33%;
+        margin: 0 10px;
         text-align: center;
         h2 {
             margin-top: -3em;
@@ -73,9 +76,9 @@ main {
             color: $gray-color;
         }
         footer {
-            display: flex;
-            justify-content: center;
+            display: flex !important;
             margin-top: 10px;
+            padding-left: 25px;
             span {
                 margin: 0 5px;
                 font-size: 12px;
@@ -84,6 +87,32 @@ main {
                 border-radius: 11px;
                 padding: 2px 7px;
             }
+        }
+    }
+}
+
+@media screen and (max-width: 1439px) {
+    #logo {
+        width: 150px;
+        height: 37.5px;
+    }
+    .header {
+        padding-left: 10px;
+        padding-right: 10px;
+        nav {
+            width: 100%;
+            margin-top: 10px;
+            margin-left: inherit;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+    }
+    main {
+        position: inherit;
+        h1 {
+            top: 55px;
+            right: 10px;
+            font-size: 14px;
         }
     }
 }

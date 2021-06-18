@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap");
 #logo {
   height: 50px;
   width: 200px;
@@ -9,6 +8,8 @@
   width: 358px;
   -webkit-clip-path: circle(25%);
           clip-path: circle(25%);
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 * {
@@ -17,7 +18,7 @@
 }
 
 h1, h2, p, span, button, label {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .header {
@@ -27,6 +28,8 @@ h1, h2, p, span, button, label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -39,10 +42,11 @@ h1, h2, p, span, button, label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-left: -7em;
 }
 
 .header nav span {
-  margin: 0 5px;
+  margin: 3px 5px;
   font-size: 12px;
   color: #901C1C;
   border: solid 1px #C4C4C4;
@@ -74,6 +78,7 @@ h1, h2, p, span, button, label {
 main {
   max-width: 1440px;
   margin: auto;
+  margin-bottom: 3em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -93,7 +98,7 @@ main h1 {
 }
 
 main article {
-  width: 33.33%;
+  margin: 0 10px;
   text-align: center;
 }
 
@@ -122,13 +127,11 @@ main article .price {
 }
 
 main article footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
   margin-top: 10px;
+  padding-left: 25px;
 }
 
 main article footer span {
@@ -138,5 +141,34 @@ main article footer span {
   border: solid 1px #C4C4C4;
   border-radius: 11px;
   padding: 2px 7px;
+}
+
+@media screen and (max-width: 1439px) {
+  #logo {
+    width: 150px;
+    height: 37.5px;
+  }
+  .header {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .header nav {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: inherit;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  main {
+    position: inherit;
+  }
+  main h1 {
+    top: 55px;
+    right: 10px;
+    font-size: 14px;
+  }
 }
 /*# sourceMappingURL=index.css.map */

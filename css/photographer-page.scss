@@ -1,4 +1,4 @@
-@import '../shared.scss';
+@import './shared.scss';
 .header {
     max-width: 1440px;
     margin: auto;
@@ -52,14 +52,14 @@ main {
     .feed{
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
         article {
-            width: 33%;
             margin-bottom: 30px;
             display: flex;
             justify-content: center;
             figure {
                 height: 300px;
-                width: 350px;
+                width: 365px;
                 img {
                     height: 100%;
                     width: 100%;
@@ -70,6 +70,26 @@ main {
                 }
                 span{
                     float: right;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 1439px) {
+    main {
+        margin: 0 20px;
+    }
+}
+
+@media screen and (max-width: 790px) {
+    main .feed {
+        justify-content: center;
+        article {
+            figure {
+                height: 190px;
+                width: 100%;
+                img {
+                               
                 }
             }
         }
