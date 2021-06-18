@@ -16,6 +16,9 @@ fetch('../assets/FishEyeData.json')
         data.media.forEach(media => {
             (media.photographerId == id)? medias.push(media) : null;
         });
+        // Create photographer details
+
+        // Create elements
         var main = document.querySelector("main")
         var header = document.createElement("header")
         var sectionDesc = document.createElement("div")
@@ -27,16 +30,15 @@ fetch('../assets/FishEyeData.json')
         var address = document.createElement("address")
         var p = document.createElement("p")
         var filters = document.createElement("div")
-        
-        console.log(photographe)
 
+        // Add text, class and attr
         h1.textContent = photographe.name
         sectionDesc.appendChild(h1)
 
         address.textContent = photographe.city + ", " + photographe.country
         sectionDesc.appendChild(address)
 
-        
+        p.textContent = photographe.tagline
         sectionDesc.appendChild(p)
 
         photographe.tags.forEach(tag => {
@@ -54,12 +56,15 @@ fetch('../assets/FishEyeData.json')
         img.classList.add("presentationImg");
         sectionImg.appendChild(img)
 
+        // Add elements on ohter elements and put on HTML
         header.appendChild(sectionDesc)
         header.appendChild(sectionButton)
         header.appendChild(sectionImg)
         main.insertBefore(header, main.childNodes[0])
 
+        // Display all medias
         medias.forEach(media => {
+            // Create elements
             var article = document.createElement("article")
             var figure = document.createElement("figure")
             var img = document.createElement("img")
@@ -68,7 +73,7 @@ fetch('../assets/FishEyeData.json')
             var i = document.createElement("i")
             var span = document.createElement("span")
 
-            console.log(media)
+            // Add text, class and attr
             i.classList.add("fas", "fa-heart")
 
             span.textContent = media.likes
@@ -84,7 +89,8 @@ fetch('../assets/FishEyeData.json')
             figure.appendChild(img)
             figure.appendChild(figcaption)
             article.appendChild(figure)
-
+            
+            // Put on HTML
             document.querySelector(".feed").appendChild(article)
         });
     })
