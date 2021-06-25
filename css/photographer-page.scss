@@ -11,6 +11,7 @@ main {
         padding: 0 34px;
         display: flex;
         align-items: center;
+        justify-content: space-between;
         h1 {
             font-size: 64px;
             color: $orange-color;
@@ -31,9 +32,6 @@ main {
             span {
                 margin: 0 10px;
             }
-        }
-        div {
-            width: 33.33%;
         }
         button {
             height: 69px;
@@ -78,20 +76,49 @@ main {
 @media screen and (max-width: 1439px) {
     main {
         margin: 0 20px;
+        header {
+            padding: 0;
+            img{
+                float: right;
+            }
+            h1 {
+                font-size: 36px;
+            }
+            address {
+                font-size: 13px;
+                margin-bottom: 19px;
+            }
+            p,span {
+                font-size: 13px;
+                margin: 5px 0;
+            }
+            button{
+                position:fixed;
+                bottom: 30px;
+                left: 50%;
+	            transform: translateX(-50%);
+
+            }
+        }
+        .feed{
+            article {
+                figure {
+                    max-width: 335px;
+                    max-height: 190px;
+                    width:inherit;
+                    height:inherit;
+                }
+            }
+        }
     }
 }
 
 @media screen and (max-width: 790px) {
     main .feed {
         justify-content: center;
-        article {
-            figure {
-                height: 190px;
-                width: 100%;
-                img {
-                               
-                }
-            }
-        }
+    }
+    .presentationImg {
+        height: 263px;
+        width: 179px;
     }
 }

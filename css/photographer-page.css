@@ -40,6 +40,9 @@ main header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 main header h1 {
@@ -69,10 +72,6 @@ main header .filters {
 
 main header .filters span {
   margin: 0 10px;
-}
-
-main header div {
-  width: 33.33%;
 }
 
 main header button {
@@ -135,6 +134,36 @@ main .feed article figure span {
   main {
     margin: 0 20px;
   }
+  main header {
+    padding: 0;
+  }
+  main header img {
+    float: right;
+  }
+  main header h1 {
+    font-size: 36px;
+  }
+  main header address {
+    font-size: 13px;
+    margin-bottom: 19px;
+  }
+  main header p, main header span {
+    font-size: 13px;
+    margin: 5px 0;
+  }
+  main header button {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  main .feed article figure {
+    max-width: 335px;
+    max-height: 190px;
+    width: inherit;
+    height: inherit;
+  }
 }
 
 @media screen and (max-width: 790px) {
@@ -143,9 +172,9 @@ main .feed article figure span {
         -ms-flex-pack: center;
             justify-content: center;
   }
-  main .feed article figure {
-    height: 190px;
-    width: 100%;
+  .presentationImg {
+    height: 263px;
+    width: 179px;
   }
 }
 /*# sourceMappingURL=photographer-page.css.map */
