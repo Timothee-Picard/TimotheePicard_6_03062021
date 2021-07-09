@@ -11,6 +11,8 @@ const router = {
     photographerPage: "/views/photographer-page.html"
 }
 
+if(path == "/"){window.location.replace(queryString + router.home);}
+
 const Photograph = class {
 
     constructor(id, name, tagline, country, city, portrait, price, tags) {
@@ -39,7 +41,7 @@ const Photograph = class {
                 </header>
                 <address>${this.city + ", " + this.country}</address>
                 <p>${this.tagline}</p>
-                <p class="price">${this.price + '€/jour'}/jour</p>
+                <p class="price">${this.price}/jour</p>
                 <footer>
                     ${tagsHTML}
                 </footer>
@@ -169,9 +171,10 @@ const PhotographList = class {
     }
 }
 
-fetch('/assets/FishEyeData.json').then(response => { return response.json() })
+fetch('./assets/FishEyeData.json').then(response => { return response.json() })
 .then(data => {
     var TestPhotographList = new PhotographList(data)
+    console.log(path)
     switch (path) {
         case router.home:
             TestPhotographList.displayFilters()
@@ -186,3 +189,4 @@ fetch('/assets/FishEyeData.json').then(response => { return response.json() })
             break
     }
 })
+
