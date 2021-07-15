@@ -115,7 +115,7 @@ main .feed article figure {
   width: 365px;
 }
 
-main .feed article figure img {
+main .feed article figure img, main .feed article figure video {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
