@@ -68,6 +68,12 @@ main {
                 }
                 span{
                     float: right;
+                    i{
+                        cursor: pointer;
+                    }
+                    .like {
+                        color: #901C1C;
+                    }
                 }
             }
         }

@@ -130,6 +130,14 @@ main .feed article figure span {
   float: right;
 }
 
+main .feed article figure span i {
+  cursor: pointer;
+}
+
+main .feed article figure span .like {
+  color: #901C1C;
+}
+
 @media screen and (max-width: 1439px) {
   main {
     margin: 0 20px;

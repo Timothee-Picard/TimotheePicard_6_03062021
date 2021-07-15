@@ -92,14 +92,28 @@ const Photograph = class {
                     img.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.image)
                 figure.appendChild(img)
             }
+
+            i.addEventListener("click", function(){
+                if(i.classList.contains("like")){
+                    i.classList.remove("like")
+                    span.textContent = parseInt(span.textContent)-1
+                    span.appendChild(i)
+                }
+                else {
+                    i.classList.add("like")
+                    span.textContent = parseInt(span.textContent)+1
+                    span.appendChild(i)
+                }
+            })
+
             span.appendChild(i)
             p.appendChild(span)
             figcaption.appendChild(p)
             figure.appendChild(figcaption)
             article.appendChild(figure)
+
             div.appendChild(article)
         })
-        console.log(div)
         return div
     }
 }
