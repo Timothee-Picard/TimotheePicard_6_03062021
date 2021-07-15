@@ -17,6 +17,9 @@
             border: solid 1px $lightGray-color;
             border-radius: 11px;
             padding: 2px 7px;
+            &.selected{
+                background-color: rgb(197, 197, 197);
+            }
         }
     }
     a {

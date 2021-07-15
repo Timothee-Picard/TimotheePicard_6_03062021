@@ -53,6 +53,10 @@ h1, h2, p, span, button, label {
   padding: 2px 7px;
 }
 
+.header nav span.selected {
+  background-color: #c5c5c5;
+}
+
 .header a {
   position: absolute;
   -webkit-transform: translate(-50%, -50%);

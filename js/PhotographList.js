@@ -7,6 +7,7 @@ const PhotographList = class {
     constructor(datas) {
         this.photographs = []
         this.sortPhotographs = []
+        this.sort = []
         this.medias = datas.media
         datas.photographers.forEach(data => {
             this.photographs.push(new Photograph(data.id, data.name, data.tagline, data.country, data.city, data.portrait, data.price, data.tags))
@@ -19,13 +20,27 @@ const PhotographList = class {
             this.sortPhotographs = this.photographs
         }
         else {
-            this.photographs.forEach(photograph => {
-                photograph.tags.forEach(tag => {
-                    if(sort == tag) {
-                        this.sortPhotographs.push(photograph)
-                    }
+            if(this.sort.indexOf(sort) === -1 ){
+                this.sort.push(sort) 
+            }
+            else {
+                const index = this.sort.indexOf(sort)
+                if (index > -1) {
+                    this.sort.splice(index, 1)
+                }
+            }
+            if(this.sort.length > 0){
+                this.photographs.forEach(photograph => {
+                    photograph.tags.forEach(tag => {
+                        if(this.sort.includes(tag)) {
+                            this.sortPhotographs.indexOf(photograph) === -1 ? this.sortPhotographs.push(photograph) : null
+                        }
+                    })
                 })
-            })
+            }
+            else {
+                this.sortPhotographs = this.photographs
+            }
         }
     }
 
@@ -33,11 +48,11 @@ const PhotographList = class {
         let medias = []
         let photographe = {}
         this.photographs.forEach(photograph => {
-            (photograph.id == id)? photographe = photograph : null;
-        });
+            (photograph.id == id)? photographe = photograph : null
+        })
         this.medias.forEach(media => {
-            (media.photographerId == id)? medias.push(media) : null;
-        });
+            (media.photographerId == id)? medias.push(media) : null
+        })
         
         var filterHTML = `
         <label for="sort">Trier par</label>
@@ -71,6 +86,7 @@ const PhotographList = class {
             span.textContent = `#${filter}`
             nav.appendChild(span)
             span.addEventListener("click", achanger =>{
+                span.classList.contains("selected")? span.classList.remove("selected") : span.classList.add("selected")
                 this.sortList(filter)
                 this.displayList()
             })
