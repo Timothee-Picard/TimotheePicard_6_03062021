@@ -99,11 +99,17 @@ const Photograph = class {
                     source.setAttribute("type", "video/mp4")
                 video.insertBefore(source, video.firstChild)
                 figure.appendChild(video)
+                video.addEventListener("click", openModal=>{
+                    this.openModal(medias, media)
+                })
             }
             else {
                 let img = document.createElement("img")
                     img.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.image)
                 figure.appendChild(img)
+                img.addEventListener("click", openModal=>{
+                    this.openModal(medias, media)
+                })
             }
 
             i.addEventListener("click", function(){
@@ -130,7 +136,7 @@ const Photograph = class {
         return div
     }
 
-    openModal(media){
+    openModal(medias , media){
         let modal = document.createElement("div")
             modal.classList.add("modal")
         if(document.querySelector(".modal")){
@@ -138,7 +144,39 @@ const Photograph = class {
         }
         document.body.appendChild(modal)
         if(media){
-            console.log('aaaaaa')
+            let lightbox = document.createElement("div")
+                lightbox.classList.add("lightbox")
+            let iClose = document.createElement("i")
+                iClose.classList.add("fas", "fa-times")
+            let iLeft = document.createElement("i")
+                iLeft.classList.add("fas", "fa-chevron-left")
+            
+            iLeft.addEventListener("click", back =>{
+                for (var i = 0; i < medias.length; i++) {
+                    medias[i] == media ? this.openModal(medias, medias[i-1]) : null
+                }
+            })
+
+            let iRight = document.createElement("i")
+                iRight.classList.add("fas", "fa-chevron-right")
+
+            iRight.addEventListener("click", next =>{
+                for (var i = 0; i < medias.length; i++) {
+                    medias[i] == media ? this.openModal(medias, medias[i+1]) : null
+                }
+            })
+            console.log(media)
+            let img = document.createElement("img")
+                img.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.image)
+            let title = document.createElement("h3")
+                title.textContent = media.title
+            iClose.addEventListener("click", this.closeModal)
+            lightbox.appendChild(iClose)
+            lightbox.appendChild(iLeft)
+            lightbox.appendChild(img)
+            lightbox.appendChild(iRight)
+            lightbox.appendChild(title)
+            modal.appendChild(lightbox)
         }
         else{
             let form = document.createElement("form")

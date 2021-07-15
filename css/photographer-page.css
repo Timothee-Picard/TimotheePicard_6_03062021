@@ -158,6 +158,46 @@ main .feed article figure span .like {
           align-items: center;
 }
 
+.modal .lightbox {
+  position: relative;
+  padding: 0 2em;
+  border: solid 1px #95FFF9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal .lightbox img {
+  height: 900px;
+  width: 1050px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.modal .lightbox i {
+  color: #901C1C;
+}
+
+.modal .lightbox i.fa-times {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  font-size: 30px;
+}
+
+.modal .lightbox h3 {
+  width: 100%;
+}
+
 .modal form {
   background-color: #DB8876;
   height: 900px;

@@ -90,6 +90,33 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    .lightbox{
+        position: relative;
+        padding: 0 2em;
+        border: solid 1px #95FFF9;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        img{
+            height: 900px;
+            width: 1050px;
+            object-fit: cover;
+        }
+        i{
+            color: #901C1C;
+        }
+        i.fa-times{
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: white;
+            font-size: 30px;
+        }
+        h3{
+            width: 100%;
+        }
+    }
     form {
         background-color: #DB8876;
         height: 900px;
