@@ -53,16 +53,26 @@ const PhotographList = class {
         this.medias.forEach(media => {
             (media.photographerId == id)? medias.push(media) : null
         })
-        
-        var filterHTML = `
-        <label for="sort">Trier par</label>
-        <select name="sort" id="sort">
-            <option value="popularity">Popularité</option>
-            <option value="date">Date</option>
-            <option value="title">Titre</option>
-        </select>`
-
-        main.innerHTML = photographe.displayProfil() + filterHTML
+        let label = document.createElement("label")
+            label.setAttribute('for','sort')
+        let select = document.createElement("select")
+            select.setAttribute('id','sort')
+            select.setAttribute('name','sort')
+        let option1 = document.createElement("option")
+            option1.textContent = "Popularité"
+            option1.setAttribute('value','popularity')
+        let option2 = document.createElement("option")
+            option2.textContent = "Date"
+            option2.setAttribute('value','date')
+        let option3 = document.createElement("option")
+            option3.textContent =  "Titre"
+            option3.setAttribute('value','title')
+        select.appendChild(option1)
+        select.appendChild(option2)
+        select.appendChild(option3)
+        main.insertBefore(photographe.displayProfil(), main.firstChild)
+        main.appendChild(label)
+        main.appendChild(select)
         main.appendChild(photographe.displayMedias(medias))
     }
 

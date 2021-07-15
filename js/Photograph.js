@@ -40,29 +40,37 @@ const Photograph = class {
         this.tags.forEach(tag => {
             tagsHTML += '<span>#' + tag + '</span>'
         })
-        let profil = `
-        <header>
-            <div>
-                <h1>${this.name}</h1>
-                <address>${this.city + ", " + this.country}</address>
-                <p>${this.tagline}</p>
-                <div class="filters">
-                    ${tagsHTML}
-                </div>
-            </div>
-            <div>
-                <button>Contactez-moi</button>
-            </div>
-            <div>
-                <img src="../assets/Photographers ID Photos/${this.portrait}" class="presentationImg">
-            </div>
-        </header>`
-
-        return profil
+        let header = document.createElement("header")
+        let div1 = document.createElement("div")
+        let h1 = document.createElement("h1")
+            h1.textContent = this.name
+        let address = document.createElement("address")
+            address.textContent = this.city + ", " + this.country
+        let p = document.createElement("p")
+            p.textContent = this.tagline
+        let filters = document.createElement("div")
+            filters.classList.add("filters")
+            filters.innerHTML = tagsHTML
+        div1.appendChild(h1)
+        div1.appendChild(address)
+        div1.appendChild(p)
+        div1.appendChild(filters)
+        let div2 = document.createElement("div")
+        let button = document.createElement("button")
+            button.textContent = "Contactez-moi"
+        div2.appendChild(button)
+        let div3 = document.createElement("div")
+        let img = document.createElement("img")
+            img.classList.add("presentationImg")
+            img.setAttribute("src", `../assets/Photographers ID Photos/${this.portrait}`)
+        div3.appendChild(img)
+        header.appendChild(div1)
+        header.appendChild(div2)
+        header.appendChild(div3)
+        return header
     }
 
     displayMedias(medias){
-        let photographeMediasHTML = ""
         let div = document.createElement("div")
             div.classList.add("feed")
         medias.forEach(media => {
