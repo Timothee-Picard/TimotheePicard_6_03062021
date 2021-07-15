@@ -62,7 +62,8 @@ const PhotographList = class {
             <option value="title">Titre</option>
         </select>`
 
-        main.innerHTML = photographe.displayProfil() + filterHTML + photographe.displayMedias(medias)
+        main.innerHTML = photographe.displayProfil() + filterHTML
+        main.appendChild(photographe.displayMedias(medias))
     }
 
     displayList() {

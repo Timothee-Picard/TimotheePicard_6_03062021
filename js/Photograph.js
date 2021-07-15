@@ -63,40 +63,44 @@ const Photograph = class {
 
     displayMedias(medias){
         let photographeMediasHTML = ""
-
+        let div = document.createElement("div")
+            div.classList.add("feed")
         medias.forEach(media => {
-            if(media.video){ 
-                console.log(media)
-                photographeMediasHTML += `
-                <article>
-                    <figure>
-                        <video controls width="100%">
-                            <source src="${"../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.video}"
-                                    type="video/mp4">
-                            Sorry, your browser doesn't support embedded videos.
-                        </video>
-                        <figcaption>
-                            <p>${media.title}<span>${media.likes}<i class="fas fa-heart" aria-hidden="true"></i></span></p>
-                        </figcaption>
-                    </figure>
-                </article>
-                `
+            let article = document.createElement("article")
+            let figure = document.createElement("figure")
+            let figcaption = document.createElement("figcaption")
+                figcaption
+            let p = document.createElement("p")
+                p.textContent = media.title
+            let span = document.createElement("span")
+                span.textContent = media.likes
+            let i = document.createElement("i")
+                i.classList.add("fas", "fa-heart")
+                i.setAttribute("aria-hidden", true)
+            if(media.video){
+                let video = document.createElement("video")
+                    video.controls = "controls"
+                    video.textContent = "Sorry, your browser doesn't support embedded videos."
+                let source = document.createElement("source")
+                    source.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.video)
+                    source.setAttribute("type", "video/mp4")
+                video.insertBefore(source, video.firstChild)
+                figure.appendChild(video)
             }
             else {
-                photographeMediasHTML += `
-                <article>
-                    <figure>
-                        <img src="${"../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.image}">
-                        <figcaption>
-                            <p>${media.title}<span>${media.likes}<i class="fas fa-heart" aria-hidden="true"></i></span></p>
-                        </figcaption>
-                    </figure>
-                </article>
-                `
+                let img = document.createElement("img")
+                    img.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.image)
+                figure.appendChild(img)
             }
+            span.appendChild(i)
+            p.appendChild(span)
+            figcaption.appendChild(p)
+            figure.appendChild(figcaption)
+            article.appendChild(figure)
+            div.appendChild(article)
         })
-        
-        return "<div class='feed'>" + photographeMediasHTML + "</div>"
+        console.log(div)
+        return div
     }
 }
 
