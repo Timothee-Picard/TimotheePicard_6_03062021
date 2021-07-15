@@ -115,7 +115,7 @@ main .feed article figure {
   width: 365px;
 }
 
-main .feed article figure img {
+main .feed article figure img, main .feed article figure video {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
@@ -128,6 +128,123 @@ main .feed article figure p {
 
 main .feed article figure span {
   float: right;
+}
+
+main .feed article figure span i {
+  cursor: pointer;
+}
+
+main .feed article figure span .like {
+  color: #901C1C;
+}
+
+.modal {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: rgba(196, 196, 196, 0.4);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal .lightbox {
+  position: relative;
+  padding: 0 2em;
+  border: solid 1px #95FFF9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal .lightbox img {
+  height: 900px;
+  width: 1050px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.modal .lightbox i {
+  color: #901C1C;
+}
+
+.modal .lightbox i.fa-times {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  font-size: 30px;
+}
+
+.modal .lightbox h3 {
+  width: 100%;
+}
+
+.modal form {
+  background-color: #DB8876;
+  height: 900px;
+  max-width: 669px;
+  overflow: auto;
+  padding: 35px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+}
+
+.modal form i {
+  position: absolute;
+  top: 1.2em;
+  right: 1.2em;
+  color: white;
+  font-size: 30px;
+}
+
+.modal form h2 {
+  font-size: 64px;
+  font-style: normal;
+}
+
+.modal form label {
+  font-size: 36px;
+}
+
+.modal form input {
+  font-size: 36px;
+  line-height: 50px;
+}
+
+.modal form input[type=submit] {
+  width: 170px;
+  height: 69px;
+  background-color: #901c1c;
+  border: none;
+}
+
+.modal form textarea {
+  height: 597px;
 }
 
 @media screen and (max-width: 1439px) {

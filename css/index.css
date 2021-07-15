@@ -42,7 +42,6 @@ h1, h2, p, span, button, label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-left: -7em;
 }
 
 .header nav span {
@@ -52,6 +51,10 @@ h1, h2, p, span, button, label {
   border: solid 1px #C4C4C4;
   border-radius: 11px;
   padding: 2px 7px;
+}
+
+.header nav span.selected {
+  background-color: #c5c5c5;
 }
 
 .header a {

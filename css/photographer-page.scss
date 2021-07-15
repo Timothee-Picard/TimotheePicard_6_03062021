@@ -58,7 +58,7 @@ main {
             figure {
                 height: 300px;
                 width: 365px;
-                img {
+                img,video {
                     height: 100%;
                     width: 100%;
                     object-fit: cover;
@@ -68,8 +68,90 @@ main {
                 }
                 span{
                     float: right;
+                    i{
+                        cursor: pointer;
+                    }
+                    .like {
+                        color: #901C1C;
+                    }
                 }
             }
+        }
+    }
+}
+.modal {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(196, 196, 196, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .lightbox{
+        position: relative;
+        padding: 0 2em;
+        border: solid 1px #95FFF9;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        img{
+            height: 900px;
+            width: 1050px;
+            object-fit: cover;
+        }
+        i{
+            color: #901C1C;
+        }
+        i.fa-times{
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: white;
+            font-size: 30px;
+        }
+        h3{
+            width: 100%;
+        }
+    }
+    form {
+        background-color: #DB8876;
+        height: 900px;
+        max-width: 669px;
+        overflow: auto;
+        padding: 35px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        i{
+            position: absolute;
+            top: 1.2em;
+            right: 1.2em;
+            color: white;
+            font-size: 30px;
+        }
+        h2 {
+            font-size: 64px;
+            font-style: normal;
+        }
+        label {
+            font-size: 36px;
+        }
+        input{
+            font-size: 36px;
+            line-height: 50px;
+            &[type=submit]{
+                width: 170px;
+                height: 69px;
+                background-color: rgba(144, 28, 28, 1);
+                border: none;
+            }
+        }
+        textarea{
+            height: 597px;
         }
     }
 }
