@@ -1,7 +1,7 @@
 import Photograph from './Photograph.js'
 
 var nav = document.querySelector("nav")
-var main = document.querySelector("main")
+// var main = document.querySelector("main")
 
 const PhotographList = class {
     constructor(datas) {
@@ -12,6 +12,8 @@ const PhotographList = class {
         datas.photographers.forEach(data => {
             this.photographs.push(new Photograph(data.id, data.name, data.tagline, data.country, data.city, data.portrait, data.price, data.tags))
         })
+
+        this.$main = document.querySelector('main')
     }
 
     sortList(sort) {
@@ -70,10 +72,10 @@ const PhotographList = class {
         select.appendChild(option1)
         select.appendChild(option2)
         select.appendChild(option3)
-        main.insertBefore(photographe.displayProfil(), main.firstChild)
-        main.appendChild(label)
-        main.appendChild(select)
-        main.appendChild(photographe.displayMedias(medias))
+        this.$main.insertBefore(photographe.displayProfil(), this.$main.firstChild)
+        this.$main.appendChild(label)
+        this.$main.appendChild(select)
+        this.$main.appendChild(photographe.displayMedias(medias))
     }
 
     displayList() {
@@ -81,7 +83,17 @@ const PhotographList = class {
         this.sortPhotographs.forEach(sortPhotograph => {
             content += sortPhotograph.displayPhotograph()
         })
-        main.innerHTML = content
+        this.$main.innerHTML = content
+
+        this.handlePriceOnClick()
+    }
+
+    handlePriceOnClick() {
+        this.$main
+            .querySelectorAll('.price')[0]
+            .addEventListener('click', () => (
+                console.log("====")
+            ))
     }
 
     displayFilters() {
@@ -92,13 +104,24 @@ const PhotographList = class {
             })
         })
         let filters = [...new Set(sorts)]
+        let span = ''
         filters.forEach(filter => {
-            let span = document.createElement("span")
-            span.textContent = `#${filter}`
-            nav.appendChild(span)
-            span.addEventListener("click", achanger =>{
-                span.classList.contains("selected")? span.classList.remove("selected") : span.classList.add("selected")
-                this.sortList(filter)
+            // let span = document.createElement("span")
+
+            span += `
+                <span>#${filter}</span>
+            `
+        })
+        nav.innerHTML = span
+
+        nav.querySelectorAll('span').forEach(elt => {
+            elt.addEventListener('click', (e) => {
+                const spanElt = e.target
+
+                spanElt.classList.contains("selected")
+                    ? spanElt.classList.remove("selected")
+                    : spanElt.classList.add("selected")
+                // this.sortList(filter)
                 this.displayList()
             })
         })
