@@ -42,7 +42,6 @@ h1, h2, p, span, button, label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-left: -7em;
 }
 
 .header nav span {
