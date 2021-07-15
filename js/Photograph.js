@@ -67,6 +67,11 @@ const Photograph = class {
         header.appendChild(div1)
         header.appendChild(div2)
         header.appendChild(div3)
+
+        button.addEventListener("click", openModal => {
+            this.openModal()
+        })
+
         return header
     }
 
@@ -123,6 +128,66 @@ const Photograph = class {
             div.appendChild(article)
         })
         return div
+    }
+
+    openModal(media){
+        let modal = document.createElement("div")
+            modal.classList.add("modal")
+        if(document.querySelector(".modal")){
+            document.querySelector(".modal").remove()
+        }
+        document.body.appendChild(modal)
+        if(media){
+            console.log('aaaaaa')
+        }
+        else{
+            let form = document.createElement("form")
+            let h2 = document.createElement("h2")
+                h2.textContent = `Contactez-Moi ${this.name}`
+            let labelFirstname = document.createElement("label")
+                labelFirstname.textContent = "Prénom"
+            let Firstname = document.createElement("input")
+                Firstname.setAttribute("type", "text")
+
+            let labelName = document.createElement("label")
+                labelName.textContent = "Nom"
+            let Name = document.createElement("input")
+                Name.setAttribute("type", "text")
+
+            let labelEmail = document.createElement("label")
+                labelEmail.textContent = "Email"
+            let Email = document.createElement("input")
+                Email.setAttribute("type", "email")
+
+            let labelMessage = document.createElement("label")
+                labelMessage.textContent = "Votre message"
+            let Message = document.createElement("textarea")
+
+            let Send = document.createElement("input")
+                Send.setAttribute("type", "submit")
+
+            let i = document.createElement("i")
+                i.classList.add("fas", "fa-times")
+            i.addEventListener("click", this.closeModal)
+            form.appendChild(i)
+            form.appendChild(h2)
+            form.appendChild(labelFirstname)
+            form.appendChild(Firstname)
+            form.appendChild(labelName)
+            form.appendChild(Name)
+            form.appendChild(labelEmail)
+            form.appendChild(Email)
+            form.appendChild(labelMessage)
+            form.appendChild(Message)
+            form.appendChild(Send)
+            modal.appendChild(form)
+        }
+    }
+
+    closeModal(){
+        if(document.querySelector(".modal")){
+            document.querySelector(".modal").remove()
+        }
     }
 }
 
