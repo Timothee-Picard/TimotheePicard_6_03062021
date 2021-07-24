@@ -18,7 +18,6 @@ class App {
         .then(response => { return response.json() })
         .then(data => {
             var TestPhotographList = new PhotographList(data)
-            console.log(path)
             switch (path) {
                 case router.home:
                     TestPhotographList.displayFilters()

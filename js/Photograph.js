@@ -1,6 +1,6 @@
 const Photograph = class {
 
-    constructor(id, name, tagline, country, city, portrait, price, tags) {
+    constructor(id, name, tagline, country, city, portrait, price, tags, alt) {
         this.id = id
         this.name = name
         this.tagline = tagline
@@ -9,6 +9,7 @@ const Photograph = class {
         this.portrait = portrait
         this.price = price
         this.tags = tags
+        this.alt = alt
     }
 
     displayPhotograph() {
@@ -19,7 +20,7 @@ const Photograph = class {
         let article = `
             <article>
                 <header>
-                    <img src="./assets/Photographers ID Photos/${this.portrait}" class="presentationImg">
+                    <img src="./assets/Photographers ID Photos/${this.portrait}" alt="${this.alt}" class="presentationImg">
                     <h2>
                         <a href="${"./views/photographer-page.html?id=" + this.id}">${this.name}</a>
                     </h2>
@@ -63,12 +64,13 @@ const Photograph = class {
         let img = document.createElement("img")
             img.classList.add("presentationImg")
             img.setAttribute("src", `../assets/Photographers ID Photos/${this.portrait}`)
+            img.setAttribute("alt", this.alt)
         div3.appendChild(img)
         header.appendChild(div1)
         header.appendChild(div2)
         header.appendChild(div3)
 
-        button.addEventListener("click", openModal => {
+        button.addEventListener("click", () => {
             this.openModal()
         })
 
@@ -106,8 +108,9 @@ const Photograph = class {
             else {
                 let img = document.createElement("img")
                     img.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.image)
+                    img.setAttribute("alt", media.alt)
                 figure.appendChild(img)
-                img.addEventListener("click", openModal=>{
+                img.addEventListener("click", () =>{
                     this.openModal(medias, media)
                 })
             }
@@ -153,7 +156,14 @@ const Photograph = class {
             
             iLeft.addEventListener("click", back =>{
                 for (var i = 0; i < medias.length; i++) {
-                    medias[i] == media ? this.openModal(medias, medias[i-1]) : null
+                    if (medias[i] == media) {
+                        if(medias[i-1]){
+                            this.openModal(medias, medias[i-1])
+                        }
+                        else{
+                            this.openModal(medias, medias[medias.length-1])
+                        }
+                    }
                 }
             })
 
@@ -162,12 +172,19 @@ const Photograph = class {
 
             iRight.addEventListener("click", next =>{
                 for (var i = 0; i < medias.length; i++) {
-                    medias[i] == media ? this.openModal(medias, medias[i+1]) : null
+                    if (medias[i] == media ){
+                        if(medias[i+1]){
+                            this.openModal(medias, medias[i+1])
+                        }
+                        else{
+                            this.openModal(medias, medias[0])
+                        }
+                    }
                 }
             })
-            console.log(media)
             let img = document.createElement("img")
                 img.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.image)
+                img.setAttribute("alt", media.alt)
             let title = document.createElement("h3")
                 title.textContent = media.title
             iClose.addEventListener("click", this.closeModal)

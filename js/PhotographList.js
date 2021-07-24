@@ -10,7 +10,7 @@ const PhotographList = class {
         this.sort = []
         this.medias = datas.media
         datas.photographers.forEach(data => {
-            this.photographs.push(new Photograph(data.id, data.name, data.tagline, data.country, data.city, data.portrait, data.price, data.tags))
+            this.photographs.push(new Photograph(data.id, data.name, data.tagline, data.country, data.city, data.portrait, data.price, data.tags, data.alt))
         })
     }
 
