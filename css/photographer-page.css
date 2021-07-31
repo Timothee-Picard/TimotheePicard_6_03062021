@@ -214,6 +214,21 @@ main .feed article figure span .like {
   position: relative;
 }
 
+.modal form fieldset {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: none;
+}
+
+.modal form fieldset legend {
+  display: none;
+}
+
 .modal form i {
   position: absolute;
   top: 1.2em;
@@ -244,7 +259,8 @@ main .feed article figure span .like {
 }
 
 .modal form textarea {
-  height: 597px;
+  min-height: 200px;
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 1439px) {

@@ -126,6 +126,14 @@ main {
         display: flex;
         flex-direction: column;
         position: relative;
+        fieldset{
+            display: flex;
+            flex-direction: column;
+            border: none;
+            legend {
+                display: none;
+            }
+        }
         i{
             position: absolute;
             top: 1.2em;
@@ -151,7 +159,8 @@ main {
             }
         }
         textarea{
-            height: 597px;
+            min-height: 200px;
+            margin-bottom: 20px;
         }
     }
 }

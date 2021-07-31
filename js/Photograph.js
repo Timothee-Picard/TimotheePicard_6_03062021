@@ -95,7 +95,7 @@ const Photograph = class {
             if(media.video){
                 let video = document.createElement("video")
                     video.controls = "controls"
-                    video.textContent = "Sorry, your browser doesn't support embedded videos."
+                    video.textContent = "Votre navigateur ne permet pas de lire les vidéos."
                 let source = document.createElement("source")
                     source.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.video)
                     source.setAttribute("type", "video/mp4")
@@ -142,10 +142,16 @@ const Photograph = class {
     openModal(medias , media){
         let modal = document.createElement("div")
             modal.classList.add("modal")
+            modal.setAttribute("aria-hidden", "false")
+            modal.setAttribute("role", "dialog")
         if(document.querySelector(".modal")){
             document.querySelector(".modal").remove()
         }
         document.body.appendChild(modal)
+        let main = document.querySelector("main")
+        main.setAttribute("aria-hidden", "true")
+        let header = document.querySelector("header")
+        header.setAttribute("aria-hidden", "true")
         if(media){
             let lightbox = document.createElement("div")
                 lightbox.classList.add("lightbox")
@@ -197,45 +203,77 @@ const Photograph = class {
         }
         else{
             let form = document.createElement("form")
+            let legend1 = document.createElement("legend")
+                legend1.textContent = "Vos coordonnées"
+            let fieldset1 = document.createElement("fieldset")
+                fieldset1.setAttribute("aria-labelledb", "coordonnees")
+            let legend2 = document.createElement("legend")
+                legend2.textContent = "Votre message"
+            let fieldset2 = document.createElement("fieldset")
+                fieldset2.setAttribute("aria-labelledb", "message")
             let h2 = document.createElement("h2")
                 h2.textContent = `Contactez-Moi ${this.name}`
             let labelFirstname = document.createElement("label")
                 labelFirstname.textContent = "Prénom"
+                labelFirstname.setAttribute("for", "first_name")
             let Firstname = document.createElement("input")
                 Firstname.setAttribute("type", "text")
-
+                Firstname.setAttribute("name", "first_name")
+                Firstname.setAttribute("aria-label", "first_name")
+                
             let labelName = document.createElement("label")
                 labelName.textContent = "Nom"
+                labelName.setAttribute("for", "last_name")
             let Name = document.createElement("input")
                 Name.setAttribute("type", "text")
+                Name.setAttribute("name", "last_name")
+                Name.setAttribute("aria-label", "last_name")
 
             let labelEmail = document.createElement("label")
                 labelEmail.textContent = "Email"
+                labelEmail.setAttribute("for", "email")
             let Email = document.createElement("input")
                 Email.setAttribute("type", "email")
+                Email.setAttribute("name", "email")
+                Email.setAttribute("aria-label", "email")
+                Email.setAttribute("required", "true")
+                Email.setAttribute("aria-required", "true")
+                
 
             let labelMessage = document.createElement("label")
                 labelMessage.textContent = "Votre message"
+                labelMessage.setAttribute("for", "message")
             let Message = document.createElement("textarea")
+                Message.setAttribute("name", "message")
+                Message.setAttribute("aria-label", "message")
+                Message.setAttribute("required", "true")
+                Message.setAttribute("aria-required", "true")
 
             let Send = document.createElement("input")
                 Send.setAttribute("type", "submit")
 
             let i = document.createElement("i")
                 i.classList.add("fas", "fa-times")
+                i.setAttribute("data-dismiss", "modal")
             i.addEventListener("click", this.closeModal)
             form.appendChild(i)
             form.appendChild(h2)
-            form.appendChild(labelFirstname)
-            form.appendChild(Firstname)
-            form.appendChild(labelName)
-            form.appendChild(Name)
-            form.appendChild(labelEmail)
-            form.appendChild(Email)
-            form.appendChild(labelMessage)
-            form.appendChild(Message)
+            fieldset1.appendChild(legend1)
+            fieldset1.appendChild(labelFirstname)
+            fieldset1.appendChild(Firstname)
+            fieldset1.appendChild(labelName)
+            fieldset1.appendChild(Name)
+            fieldset1.appendChild(labelEmail)
+            fieldset1.appendChild(Email)
+            fieldset1.appendChild(legend2)
+            fieldset2.appendChild(labelMessage)
+            fieldset2.appendChild(Message)
+
+            form.appendChild(fieldset1)
+            form.appendChild(fieldset2)
             form.appendChild(Send)
             modal.appendChild(form)
+            Firstname.focus()
         }
     }
 
