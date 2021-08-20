@@ -206,6 +206,43 @@ const Photograph = class {
                     }
                 }
             })
+
+            document.onkeydown = (evt)=> {
+                evt = evt || window.event;
+                switch (evt.key) {
+                    case "ArrowRight":
+                        for (var i = 0; i < medias.length; i++) {
+                            if (medias[i] == media ){
+                                if(medias[i+1]){
+                                    this.openModal(medias, medias[i+1])
+                                }
+                                else{
+                                    this.openModal(medias, medias[0])
+                                }
+                            }
+                        }
+                        break;
+                    case "ArrowLeft":
+                        for (var i = 0; i < medias.length; i++) {
+                            if (medias[i] == media) {
+                                if(medias[i-1]){
+                                    this.openModal(medias, medias[i-1])
+                                }
+                                else{
+                                    this.openModal(medias, medias[medias.length-1])
+                                }
+                            }
+                        }
+                        break;
+                    case "Escape":
+                        this.closeModal()
+                        break
+                
+                    default:
+                        break;
+                }
+            };
+
             let title = document.createElement("h3")
                 title.textContent = media.title
 
