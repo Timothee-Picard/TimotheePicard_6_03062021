@@ -94,23 +94,26 @@ const Photograph = class {
                 i.setAttribute("aria-hidden", true)
             if(media.video){
                 let video = document.createElement("video")
-                    video.controls = "controls"
+                    //video.controls = "controls"
                     video.textContent = "Votre navigateur ne permet pas de lire les vidéos."
                 let source = document.createElement("source")
                     source.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.video)
                     source.setAttribute("type", "video/mp4")
                 video.insertBefore(source, video.firstChild)
                 figure.appendChild(video)
-                video.addEventListener("click", openModal=>{
+                video.addEventListener("click", ()=>{
                     this.openModal(medias, media)
                 })
             }
             else {
+                let a = document.createElement("a")
+                    a.setAttribute("href", "#")
                 let img = document.createElement("img")
                     img.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.image)
                     img.setAttribute("alt", media.alt)
-                figure.appendChild(img)
-                img.addEventListener("click", () =>{
+                a.appendChild(img)
+                figure.appendChild(a)
+                a.addEventListener("click", () =>{
                     this.openModal(medias, media)
                 })
             }
@@ -152,15 +155,30 @@ const Photograph = class {
         main.setAttribute("aria-hidden", "true")
         let header = document.querySelector("header")
         header.setAttribute("aria-hidden", "true")
+        document.onkeydown = (evt)=> {
+            evt = evt || window.event;
+            var isEscape = false;
+            if ("key" in evt) {
+                isEscape = (evt.key === "Escape" || evt.key === "Esc");
+            } else {
+                isEscape = (evt.keyCode === 27);
+            }
+            if (isEscape) {
+                this.closeModal()
+            }
+        };
         if(media){
             let lightbox = document.createElement("div")
                 lightbox.classList.add("lightbox")
+
+            let div = document.createElement("div")
+                div.classList.add("align")
             let iClose = document.createElement("i")
                 iClose.classList.add("fas", "fa-times")
             let iLeft = document.createElement("i")
                 iLeft.classList.add("fas", "fa-chevron-left")
             
-            iLeft.addEventListener("click", back =>{
+            iLeft.addEventListener("click", () =>{ //back
                 for (var i = 0; i < medias.length; i++) {
                     if (medias[i] == media) {
                         if(medias[i-1]){
@@ -176,7 +194,7 @@ const Photograph = class {
             let iRight = document.createElement("i")
                 iRight.classList.add("fas", "fa-chevron-right")
 
-            iRight.addEventListener("click", next =>{
+            iRight.addEventListener("click", () =>{ //next
                 for (var i = 0; i < medias.length; i++) {
                     if (medias[i] == media ){
                         if(medias[i+1]){
@@ -188,16 +206,38 @@ const Photograph = class {
                     }
                 }
             })
-            let img = document.createElement("img")
-                img.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.image)
-                img.setAttribute("alt", media.alt)
             let title = document.createElement("h3")
                 title.textContent = media.title
-            iClose.addEventListener("click", this.closeModal)
-            lightbox.appendChild(iClose)
-            lightbox.appendChild(iLeft)
-            lightbox.appendChild(img)
-            lightbox.appendChild(iRight)
+
+            let a = document.createElement("a")
+            a.appendChild(iClose)
+            a.addEventListener("click", this.closeModal)
+            
+            lightbox.appendChild(a)
+            div.appendChild(iLeft)
+            if(media.video){
+                let video = document.createElement("video")
+                    video.controls = "controls"
+                    video.textContent = "Votre navigateur ne permet pas de lire les vidéos."
+                let source = document.createElement("source")
+                    source.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.video)
+                    source.setAttribute("type", "video/mp4")
+                video.insertBefore(source, video.firstChild)
+                video.addEventListener("click", ()=>{
+                    this.openModal(medias, media)
+                })
+
+                div.appendChild(video)
+            }
+            else{
+                let img = document.createElement("img")
+                img.setAttribute("src", "../assets/" + this.name.substring(0, this.name.indexOf(' ')) + "/" + media.image)
+                img.setAttribute("alt", media.alt)
+
+                div.appendChild(img)
+            }
+            div.appendChild(iRight)
+            lightbox.appendChild(div)
             lightbox.appendChild(title)
             modal.appendChild(lightbox)
         }
@@ -220,6 +260,7 @@ const Photograph = class {
                 Firstname.setAttribute("type", "text")
                 Firstname.setAttribute("name", "first_name")
                 Firstname.setAttribute("aria-label", "first_name")
+                Firstname.setAttribute("tabindex", "1")
                 
             let labelName = document.createElement("label")
                 labelName.textContent = "Nom"
@@ -228,6 +269,7 @@ const Photograph = class {
                 Name.setAttribute("type", "text")
                 Name.setAttribute("name", "last_name")
                 Name.setAttribute("aria-label", "last_name")
+                Name.setAttribute("tabindex", "1")
 
             let labelEmail = document.createElement("label")
                 labelEmail.textContent = "Email"
@@ -238,6 +280,7 @@ const Photograph = class {
                 Email.setAttribute("aria-label", "email")
                 Email.setAttribute("required", "true")
                 Email.setAttribute("aria-required", "true")
+                Email.setAttribute("tabindex", "1")
                 
 
             let labelMessage = document.createElement("label")
@@ -248,15 +291,20 @@ const Photograph = class {
                 Message.setAttribute("aria-label", "message")
                 Message.setAttribute("required", "true")
                 Message.setAttribute("aria-required", "true")
+                Message.setAttribute("tabindex", "1")
 
             let Send = document.createElement("input")
                 Send.setAttribute("type", "submit")
+                Send.setAttribute("tabindex", "1")
 
             let i = document.createElement("i")
                 i.classList.add("fas", "fa-times")
-                i.setAttribute("data-dismiss", "modal")
-            i.addEventListener("click", this.closeModal)
-            form.appendChild(i)
+                i.setAttribute("aria-dismiss", "modal")
+            let a = document.createElement("button")
+                a.setAttribute("tabindex", "2")
+                a.appendChild(i)
+                a.addEventListener("click", this.closeModal)
+            form.appendChild(a)
             form.appendChild(h2)
             fieldset1.appendChild(legend1)
             fieldset1.appendChild(labelFirstname)

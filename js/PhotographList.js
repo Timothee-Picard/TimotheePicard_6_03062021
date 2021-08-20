@@ -53,8 +53,12 @@ const PhotographList = class {
         this.medias.forEach(media => {
             (media.photographerId == id)? medias.push(media) : null
         })
+
+        let sort = document.createElement("div")
+            sort.className = "sort"
         let label = document.createElement("label")
             label.setAttribute('for','sort')
+            label.textContent = "Trier par"
         let select = document.createElement("select")
             select.setAttribute('id','sort')
             select.setAttribute('name','sort')
@@ -71,8 +75,9 @@ const PhotographList = class {
         select.appendChild(option2)
         select.appendChild(option3)
         main.insertBefore(photographe.displayProfil(), main.firstChild)
-        main.appendChild(label)
-        main.appendChild(select)
+        sort.appendChild(label)
+        sort.appendChild(select)
+        main.appendChild(sort)
         main.appendChild(photographe.displayMedias(medias))
     }
 
@@ -93,10 +98,13 @@ const PhotographList = class {
         })
         let filters = [...new Set(sorts)]
         filters.forEach(filter => {
+            let a = document.createElement("a")
+                a.setAttribute("href", "#")
             let span = document.createElement("span")
-            span.textContent = `#${filter}`
-            nav.appendChild(span)
-            span.addEventListener("click", achanger =>{
+                span.textContent = `#${filter}`
+            a.appendChild(span)
+            nav.appendChild(a)
+            a.addEventListener("click", achanger =>{
                 span.classList.contains("selected")? span.classList.remove("selected") : span.classList.add("selected")
                 this.sortList(filter)
                 this.displayList()

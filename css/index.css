@@ -58,6 +58,10 @@ h1, h2, p, span, button, label {
 }
 
 .header a {
+  text-decoration: none;
+}
+
+.header .backContent {
   position: absolute;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -67,7 +71,6 @@ h1, h2, p, span, button, label {
   padding: 6px 0;
   background-color: #DB8876;
   color: black;
-  text-decoration: none;
   border-radius: 5px;
   text-align: center;
   font-size: 18px;

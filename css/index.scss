@@ -22,7 +22,10 @@
             }
         }
     }
-    a {
+    a{
+        text-decoration: none;
+    }
+    .backContent {
         position: absolute;
         transform: translate(-50%, -50%);
         left: 50%;
@@ -31,7 +34,6 @@
         padding: 6px 0;
         background-color: $beige-color;
         color: black;
-        text-decoration: none;
         border-radius: 5px;
         text-align: center;
         font-size: 18px;

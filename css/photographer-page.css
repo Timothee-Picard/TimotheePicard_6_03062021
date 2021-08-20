@@ -84,9 +84,19 @@ main header button {
   background-color: #901C1C;
 }
 
-main select {
+main .sort {
+  padding: 2em 0;
+}
+
+main .sort select {
   background-color: #901C1C;
   color: white;
+  width: 150px;
+  margin-left: 2em;
+}
+
+main .sort select option {
+  padding: 20px;
 }
 
 main .feed {
@@ -175,27 +185,38 @@ main .feed article figure span .like {
           align-items: center;
 }
 
-.modal .lightbox img {
-  height: 900px;
-  width: 1050px;
+.modal .lightbox img, .modal .lightbox video {
+  height: 40vw;
+  width: 40vw;
   -o-object-fit: cover;
      object-fit: cover;
 }
 
 .modal .lightbox i {
   color: #901C1C;
+  font-size: 2em;
+}
+
+.modal .lightbox i:first-of-type {
+  margin-right: 0.5em;
+}
+
+.modal .lightbox i:last-of-type {
+  margin-left: 0.5em;
 }
 
 .modal .lightbox i.fa-times {
   position: absolute;
   top: 0;
   right: 0;
-  color: white;
   font-size: 30px;
+  margin-right: 30px;
 }
 
 .modal .lightbox h3 {
-  width: 100%;
+  width: 70vw;
+  color: #901C1C;
+  font-weight: 400;
 }
 
 .modal form {
@@ -230,9 +251,6 @@ main .feed article figure span .like {
 }
 
 .modal form i {
-  position: absolute;
-  top: 1.2em;
-  right: 1.2em;
   color: white;
   font-size: 30px;
 }
@@ -263,18 +281,48 @@ main .feed article figure span .like {
   margin-bottom: 20px;
 }
 
+.modal form button {
+  position: absolute;
+  top: 1.2em;
+  right: 1.2em;
+  background: none;
+  border: none;
+  z-index: 999;
+}
+
+.align {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 @media screen and (max-width: 1439px) {
   main {
-    margin: 0 20px;
+    padding: 0 20px;
   }
   main header {
     padding: 0;
+    overflow: hidden;
+  }
+  main header div:first-of-type {
+    width: 50%;
+  }
+  main header div:last-of-type img {
+    margin-left: -20px;
   }
   main header img {
     float: right;
   }
   main header h1 {
     font-size: 36px;
+  }
+  main header .filters {
+    width: 80vw !important;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
   }
   main header address {
     font-size: 13px;
@@ -292,10 +340,8 @@ main .feed article figure span .like {
             transform: translateX(-50%);
   }
   main .feed article figure {
-    max-width: 335px;
-    max-height: 190px;
-    width: inherit;
-    height: inherit;
+    width: 250px;
+    height: 150px;
   }
 }
 
@@ -308,6 +354,10 @@ main .feed article figure span .like {
   .presentationImg {
     height: 263px;
     width: 179px;
+  }
+  .modal .lightbox img, .modal .lightbox video {
+    height: 70vw;
+    width: 70vw;
   }
 }
 /*# sourceMappingURL=photographer-page.css.map */
