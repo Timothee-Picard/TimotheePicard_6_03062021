@@ -355,7 +355,7 @@ main .feed article figure span .like {
     height: 263px;
     width: 179px;
   }
-  .modal .lightbox img, .modal .lightbox video {
+  .modal .lightbox img, .modal .lightbox video, .modal .lightbox h3 {
     height: 70vw;
     width: 70vw;
   }
