@@ -10,7 +10,7 @@
     </header>
     <address>{{ photographer.city + ", " + photographer.country }} </address>
     <p>{{photographer.tagline}} </p>
-    <span class="price">{{photographer.price + "/jour"}}</span>
+    <div class="price">{{photographer.price + "€/jour"}}</div>
     <footer>
       <span v-for="tag in photographer.tags" :key="tag">
         {{"#" + tag}}
@@ -28,7 +28,50 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss" scoped>
+@import '@/assets/var.scss';
 
+header {
+  margin-bottom: 1em;
+  img {
+    height: 526px;
+    width: 358px;
+    clip-path: circle(25%);
+    object-fit: contain;
+  }
+  h2 {
+    margin-top: -3em;
+    font-size: 36px;
+    color: $orange-color;
+    text-align: center;
+  }
+}
+address {
+  font-size: 13px;
+  color: $red-color;
+  text-align: center;
+}
+p {
+  font-size: 10px;
+  text-align: center;
+}
+.price {
+  font-size: 9px;
+  color: $gray-color;
+  text-align: center;
+}
+footer {
+  display: flex !important;
+  margin-top: 10px;
+  padding-left: 25px;
+  justify-content: center;
+  span {
+    margin: 0 5px;
+    font-size: 12px;
+    color: $red-color;
+    border: solid 1px $lightGray-color;
+    border-radius: 11px;
+    padding: 0 7px;
+  }
+}
 </style>

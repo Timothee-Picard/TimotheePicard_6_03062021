@@ -1,32 +1,56 @@
 <template>
   <div class="personalPage">
     <Menu></Menu>
-    <div v-if="currentPhotographer()">
+    <main v-if="currentPhotographer()">
+      <header>
+        <div>
+          <h1>{{ currentPhotographer().name }}</h1>
+          <address>{{ currentPhotographer().city + ", " + currentPhotographer().country }}</address>
+          <p>{{ currentPhotographer().tagline }}</p>
+          <div class="filters">
+            <span v-for="tag in currentPhotographer().tags" :key="tag">
+              {{ "#" + tag }}
+            </span>
+          </div>
+        </div>
+        <div>
+          <button>Contactez-moi</button>
+        </div>
+        <div>
+          <img
+            :src="require(`@/assets/Photographers ID Photos/${currentPhotographer().portrait}`)"
+            :alt="currentPhotographer().alt">
+        </div>
+      </header>
+
       <div>
         <span>{{ totalLikes() }}</span>
         <span> {{ currentPhotographer().price }} / jour</span>
       </div>
-      <h1>{{ currentPhotographer().name }}</h1>
-      <address>{{ currentPhotographer().city + ", " + currentPhotographer().country }}</address>
-      <p>{{ currentPhotographer().tagline }}</p>
-      <div v-for="tag in currentPhotographer().tags" :key="tag">
-        {{tag}}
-      </div>
-      <button>Contactez-moi</button>
-      <img
-        :src="require(`@/assets/Photographers ID Photos/${currentPhotographer().portrait}`)"
-        :alt="currentPhotographer().alt">
 
-      <div v-for="media in currentMedias()" :key="media.id">
-          <div v-if="media.image">
+      <div class="sort">
+        <label for="sort">Trier par</label>
+        <select id="sort" name="sort">
+          <option value="popularity">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+        </select>
+      </div>
+      <div class="feed">
+        <article v-for="media in currentMedias()" :key="media.id">
+          <figure>
             <img
+              v-if="media.image"
               :src="require(`@/assets/${currentPhotographer().name.substring(0,
                 currentPhotographer().name.indexOf(' '))}/${media.image}`)"
               :alt="media.alt">
-          </div>
-        <h3>{{ media.title }}<span>{{media.likes}}</span></h3>
+          </figure>
+          <figcaption>
+            <p>{{ media.title }}<span>{{media.likes}}</span></p>
+          </figcaption>
+        </article>
       </div>
-    </div>
+    </main>
   </div>
 </template>
 
@@ -65,3 +89,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+
+</style>

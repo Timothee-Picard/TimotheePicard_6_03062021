@@ -52,8 +52,25 @@ export default {
 };
 </script>
 
-<style lang="scss">
-img{
-  width: 200px;
+<style lang="scss" scoped>
+@import '@/assets/var.scss';
+
+main {
+    max-width: 1440px;
+    margin: auto;
+    margin-bottom: 3em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+    position: relative;
+    h1 {
+        position: absolute;
+        top: -50px;
+        right: 6%;
+        font-size: 36px;
+    }
+    article {
+        margin: 0 10px;
+    }
 }
 </style>

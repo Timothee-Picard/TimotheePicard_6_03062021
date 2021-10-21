@@ -8,9 +8,10 @@
         v-for="tag in tags" :key="tag"
         @click="changeFilters(tag)"
         v-bind:class="{ active: filter === tag }">
-      {{tag}}
+      {{ "#" + tag }}
       </button>
     </nav>
+    <h1>Nos photographes</h1>
   </header>
 </template>
 
@@ -31,5 +32,51 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
+@import '@/assets/var.scss';
+header {
+  img {
+    padding-right: 16px;
+    padding-left: 16px;
+    height: 50px;
+    width: 200px;
+  }
+  max-width: 1440px;
+  margin: auto;
+  padding-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  nav {
+    @media (max-width: 1400px) {
+      order: 2;
+      width: 100%;
+      margin-top: 1em;
+    }
+    flex-grow:1;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    button {
+      margin: 0 5px;
+      font-size: 12px;
+      color: $red-color;
+      border: solid 1px $lightGray-color;
+      border-radius: 11px;
+      padding: 0 7px;
+      &.active{
+        background-color: rgb(197, 197, 197);
+      }
+    }
+  }
+  a{
+    text-decoration: none;
+  }
+  h1{
+    padding-right: 16px;
+    padding-left: 16px;
+    font-size: 36px;
+    color: $red-color;
+  }
+}
 </style>
