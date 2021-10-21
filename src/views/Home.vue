@@ -1,12 +1,7 @@
 <template>
   <div class="home">
+    <Menu @change-filter="changeFilter" :tags="tags" :filter="filter"></Menu>
     <div v-if="photographers">
-      <button
-        v-for="tag in tags" :key="tag"
-        @click="changeFilter(tag)"
-        v-bind:class="{ active: filter === tag }">
-      {{tag}}
-      </button>
       <div v-for="photographer in filteredPhotographers()" :key="photographer.id">
         <img
           :src="require(`@/assets/Photographers ID Photos/${photographer.portrait}`)"
@@ -30,7 +25,12 @@
 
 import Vuex from 'vuex';
 
+import Menu from '@/components/Menu.vue';
+
 export default {
+  components: {
+    Menu,
+  },
   data() {
     return {
       filter: '',
@@ -55,7 +55,7 @@ export default {
       return (result.length > 0) ? result : this.photographers;
     },
     changeFilter(tag) {
-      (this.filter === tag) ? this.filter = '' : this.filter = tag;
+      (this.filter === tag.tag) ? this.filter = '' : this.filter = tag.tag;
     },
   },
 };

@@ -1,5 +1,6 @@
 <template>
   <div class="personalPage">
+    <Menu></Menu>
     <div v-if="currentPhotographer()">
       <div>
         <span>{{ totalLikes() }}</span>
@@ -32,7 +33,12 @@
 <script>
 import Vuex from 'vuex';
 
+import Menu from '@/components/Menu.vue';
+
 export default {
+  components: {
+    Menu,
+  },
   computed: {
     ...Vuex.mapGetters([
       'photographer',

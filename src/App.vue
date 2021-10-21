@@ -1,10 +1,5 @@
 <template>
   <div id="app">
-    <header>
-      <router-link :to="{ name:'Home' }">
-        <img alt="Vue logo" :src="require(`@/assets/logo.png`)">
-        </router-link>
-    </header>
     <router-view/>
   </div>
 </template>
