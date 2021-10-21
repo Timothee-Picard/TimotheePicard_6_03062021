@@ -2,12 +2,6 @@
   <header class="menu">
     <router-link :to="{ name:'Home' }">
       <img alt="Vue logo" :src="require(`@/assets/logo.png`)">
-      <!-- <button
-        v-for="tag in tags" :key="tag"
-        @click="changeFilter(tag)"
-        v-bind:class="{ active: filter === tag }">
-      {{tag}}
-      </button> -->
     </router-link>
     <nav v-if="tags">
       <button

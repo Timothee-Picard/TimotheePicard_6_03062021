@@ -1,22 +1,11 @@
 <template>
   <div class="home">
     <Menu @change-filter="changeFilter" :tags="tags" :filter="filter"></Menu>
-    <div v-if="photographers">
-      <div v-for="photographer in filteredPhotographers()" :key="photographer.id">
-        <img
-          :src="require(`@/assets/Photographers ID Photos/${photographer.portrait}`)"
-          :alt="photographer.alt">
-        <router-link :to="{ name:'Personalpage', params: { id: photographer.id }}">
-          <h2>{{ photographer.name }}</h2>
-        </router-link>
-        <address>{{ photographer.city + ", " + photographer.country }} </address>
-        <p>{{photographer.tagline}} </p>
-        <span>{{photographer.price + "/jour"}}</span>
-        <div v-for="tag in photographer.tags" :key="tag">
-          {{"# " + tag}}
-        </div>
-      </div>
-    </div>
+    <main v-if="photographers">
+      <article v-for="photographer in filteredPhotographers()" :key="photographer.id">
+        <Photographer :photographer="photographer"></Photographer>
+      </article>
+    </main>
   </div>
 </template>
 
@@ -26,10 +15,12 @@
 import Vuex from 'vuex';
 
 import Menu from '@/components/Menu.vue';
+import Photographer from '@/components/Photographer.vue';
 
 export default {
   components: {
     Menu,
+    Photographer,
   },
   data() {
     return {
