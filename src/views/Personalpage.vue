@@ -37,18 +37,16 @@
         </select>
       </div>
       <div class="feed">
-        <article v-for="media in currentMedias()" :key="media.id">
-          <figure>
-            <img
-              v-if="media.image"
-              :src="require(`@/assets/${currentPhotographer().name.substring(0,
-                currentPhotographer().name.indexOf(' '))}/${media.image}`)"
-              :alt="media.alt">
-          </figure>
+        <figure v-for="media in currentMedias()" :key="media.id">
+          <img
+            v-if="media.image"
+            :src="require(`@/assets/${currentPhotographer().name.substring(0,
+              currentPhotographer().name.indexOf(' '))}/${media.image}`)"
+            :alt="media.alt">
           <figcaption>
             <p>{{ media.title }}<span>{{media.likes}}</span></p>
           </figcaption>
-        </article>
+        </figure>
       </div>
     </main>
   </div>

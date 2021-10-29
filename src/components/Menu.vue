@@ -11,7 +11,7 @@
       {{ "#" + tag }}
       </button>
     </nav>
-    <h1>Nos photographes</h1>
+    <h1 v-if="tags">Nos photographes</h1>
   </header>
 </template>
 
