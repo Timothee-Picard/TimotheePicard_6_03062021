@@ -1,7 +1,20 @@
 <template>
   <div class="personalPage">
-    <Menu></Menu>
-    <main v-if="currentPhotographer()">
+    <Modal
+        v-if="modal"
+        :media="modal"
+        :photographer="currentPhotographer()"
+        @close-modal="closeModal"
+        @change-modal="changeModal">
+      </Modal>
+    <Menu v-if="!modal"></Menu>
+    <main v-if="currentPhotographer() && !modal">
+      <Modal
+        v-if="modal"
+        :media="modal"
+        :photographer="currentPhotographer()"
+        @close-modal="closeModal">
+      </Modal>
       <header>
         <div>
           <h1>{{ currentPhotographer().name }}</h1>
@@ -37,16 +50,13 @@
         </select>
       </div>
       <div class="feed">
-        <figure v-for="media in currentMedias()" :key="media.id">
-          <img
-            v-if="media.image"
-            :src="require(`@/assets/${currentPhotographer().name.substring(0,
-              currentPhotographer().name.indexOf(' '))}/${media.image}`)"
-            :alt="media.alt">
-          <figcaption>
-            <p>{{ media.title }}<span>{{media.likes}}</span></p>
-          </figcaption>
-        </figure>
+        <Media
+          v-for="media in currentMedias()"
+          :key="media.id"
+          :media="media"
+          :photographer="currentPhotographer()"
+          @open-modal="openModal">
+        </Media>
       </div>
     </main>
   </div>
@@ -56,10 +66,19 @@
 import Vuex from 'vuex';
 
 import Menu from '@/components/Menu.vue';
+import Media from '@/components/Media.vue';
+import Modal from '@/components/Modal.vue';
 
 export default {
   components: {
     Menu,
+    Media,
+    Modal,
+  },
+  data() {
+    return {
+      modal: null,
+    };
   },
   computed: {
     ...Vuex.mapGetters([
@@ -83,6 +102,33 @@ export default {
         likes += media.likes;
       });
       return likes;
+    },
+    openModal(media) {
+      this.modal = media;
+    },
+    closeModal() {
+      this.modal = null;
+    },
+    changeModal(datas) {
+      for (let index = 0; index < this.medias(this.currentPhotographer().id).length; index++) {
+        if (datas.media === this.medias(this.currentPhotographer().id)[index]) {
+          if (datas.state === 'next') {
+            if (this.medias(this.currentPhotographer().id)[index + 1]) {
+              this.openModal(this.medias(this.currentPhotographer().id)[index + 1]);
+            } else {
+              this.openModal(this.medias(this.currentPhotographer().id)[0]);
+            }
+          }
+          if (datas.state === 'prev') {
+            if (this.medias(this.currentPhotographer().id)[index - 1]) {
+              this.openModal(this.medias(this.currentPhotographer().id)[index - 1]);
+            } else {
+              console.log(this.medias(this.currentPhotographer().id).length);
+              this.openModal(this.medias(this.currentPhotographer().id)[this.medias(this.currentPhotographer().id).length - 1]);
+            }
+          }
+        }
+      }
     },
   },
 };

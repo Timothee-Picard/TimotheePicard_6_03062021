@@ -16,7 +16,6 @@ export default {
       // si un élément est ciblé
       if (element) {
         // on boucle sur la liste des éléments du tableau
-        // eslint-disable-next-line no-plusplus
         for (let index = 0; index < siblingElements.length; index++) {
           // on récupère l'élément séléctionné
           if (element === siblingElements[index]) {

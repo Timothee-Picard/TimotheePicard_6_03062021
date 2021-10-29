@@ -10,8 +10,6 @@
 </template>
 
 <script>
-/* eslint-disable no-unused-expressions */
-
 import Vuex from 'vuex';
 
 import Menu from '@/components/Menu.vue';

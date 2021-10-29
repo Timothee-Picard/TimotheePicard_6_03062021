@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import Vue from 'vue';
 import Vuex from 'vuex';
 import Datas from '@/assets/FishEyeData.json';
