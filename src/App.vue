@@ -45,6 +45,7 @@ export default {
         siblingElements[0].focus();
       }
     }
+
     // quand on appuie sur une touche
     document.addEventListener('keydown', (e) => {
       // on récupère la liste des éléments pouvant être focus
