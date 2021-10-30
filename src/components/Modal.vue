@@ -7,6 +7,12 @@
         :src="require(`@/assets/${photographer.name.substring(0,
           photographer.name.indexOf(' '))}/${media.image}`)"
         :alt="media.alt">
+      <video controls
+        v-if="media.video"
+        :src="require(`@/assets/${photographer.name.substring(0,
+        photographer.name.indexOf(' '))}/${media.video}`)">
+      <control></control>
+      </video>
       <button @click="changeModal('next')">suivant</button>
       <button @click="closeModal()">close</button>
     </div>
@@ -40,7 +46,7 @@ export default {
     escape(e) {
       // si la touche esc est utilisé emmet l'event close modal
       if (e.code === 'Escape') {
-        this.$emit('close-modal');
+        this.closeModal();
       }
     },
     next() {
@@ -59,7 +65,6 @@ export default {
 @import '@/assets/var.scss';
 .modal {
   background-color: red;
-  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;

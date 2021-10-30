@@ -36,7 +36,6 @@ export default {
 header {
   img {
     padding-right: 16px;
-    padding-left: 16px;
     height: 50px;
     width: 200px;
   }
@@ -73,10 +72,9 @@ header {
     text-decoration: none;
   }
   h1{
-    padding-right: 16px;
-    padding-left: 16px;
     font-size: 36px;
     color: $red-color;
+    line-height: 1;
   }
 }
 </style>

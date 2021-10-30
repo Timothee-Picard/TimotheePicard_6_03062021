@@ -8,6 +8,10 @@
 import Vuex from 'vuex';
 
 export default {
+  created() {
+    // set title page
+    document.title = 'Fishoye - Photographie';
+  },
   mounted() {
     // importantion des données dans le store
     this.importdatas();
@@ -63,6 +67,7 @@ export default {
     });
   },
   methods: {
+    // récupère les actions du store
     ...Vuex.mapActions([
       'importdatas',
     ]),
@@ -71,11 +76,7 @@ export default {
 </script>
 
 <style lang="scss">
-$orange-color: #D3573C;
-$red-color: #901C1C;
-$beige-color: #DB8876;
-$gray-color: #757575;
-$lightGray-color: #C4C4C4;
+@import '@/assets/var.scss';
 
 * {
   /*Reset's every elements apperance*/
@@ -92,28 +93,9 @@ $lightGray-color: #C4C4C4;
   text-indent: 0;
 }
 
-img {
-  width: 200px;
-}
-body{margin: 0;padding: 0;}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  padding: 0 20px;
+  overflow: hidden;
 }
 </style>
