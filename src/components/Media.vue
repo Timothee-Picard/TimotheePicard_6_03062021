@@ -57,6 +57,7 @@ article {
       width: 100%;
       object-fit: cover;
       cursor: pointer ;
+      border-radius: 5px;
     }
     p {
       color: $red-color;
@@ -67,6 +68,16 @@ article {
         i {
           margin-left: 0.5em;
         }
+      }
+    }
+  }
+  @media (max-width: 790px) {
+    width: 100%;
+    figure {
+      width: 100%;
+      height: 190px;
+      img,video {
+        width: 100%;
       }
     }
   }

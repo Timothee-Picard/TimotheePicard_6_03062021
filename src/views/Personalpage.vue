@@ -171,6 +171,7 @@ export default {
   }
 }
 main {
+  padding-bottom: 7em;
   max-width: 1440px;
   margin: auto;
   header {
@@ -235,6 +236,47 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+}
+@media (max-width: 1250px) {
+  main {
+    header {
+      position: relative;
+      padding: 0;
+      margin: 5em 0;
+      div {
+        &:first-of-type {
+          width: 70%;
+        }
+      }
+      h1 {
+        font-size: 36px;
+      }
+      address, p {
+        font-size: 20px;
+      }
+      img {
+        height: 263px;
+        width: 179px;
+        position: absolute;
+        right: -1em;
+        top: -2em;
+      }
+      .filters span {
+        font-size: 15px;
+      }
+      .contact {
+        margin-bottom: 0;
+        margin-left: 0;
+        bottom: 1em;
+        position: fixed;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  .counter{
+    display: none;
   }
 }
 </style>
