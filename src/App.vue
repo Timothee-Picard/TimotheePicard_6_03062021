@@ -96,6 +96,8 @@ export default {
 #app {
   text-align: center;
   padding: 0 20px;
+  padding-bottom: 60px;
   overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
 }
 </style>

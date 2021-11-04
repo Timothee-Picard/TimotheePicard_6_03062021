@@ -12,10 +12,10 @@
       @close-form="closeForm">
     </Contact>
     <Menu v-if="!modal && !contact"></Menu>
-    <div class="counter" v-if="currentPhotographer()">
+    <div v-if="!modal && !contact && currentPhotographer()" class="counter">
       <!--  eslint-disable-next-line vue/no-parsing-error -->
-      <span>{{ totalLikes() }}<3</span>
-      <span> {{ currentPhotographer().price }} / jour</span>
+      <span>{{ totalLikes() }}<i class="fas fa-heart" aria-hidden="true"></i></span>
+      <span> {{ currentPhotographer().price }}€ / jour</span>
     </div>
     <main v-if="currentPhotographer() && !modal && !contact">
       <Modal
@@ -165,6 +165,9 @@ export default {
     font-weight: 500;
     font-size: 19px;
     color: black;
+  }
+  i {
+    padding-left: 10px;
   }
 }
 main {
