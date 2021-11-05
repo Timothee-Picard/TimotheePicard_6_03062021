@@ -1,5 +1,5 @@
 <template>
-  <article>
+  <article role="article" :aria-label="'photo or video took by ' + photographer.name">
     <figure>
       <img
         tabindex="0"
@@ -16,7 +16,7 @@
           v-if="media.video"
           :src="require(`@/assets/${photographer.name.substring(0,
           photographer.name.indexOf(' '))}/${media.video}`)"></video>
-      <figcaption>
+      <figcaption aria-label="title of photo">
         <p>{{ media.title }}<span>{{media.likes}}<i class="fas fa-heart" aria-hidden="true"></i></span></p>
       </figcaption>
     </figure>
@@ -58,6 +58,7 @@ article {
       object-fit: cover;
       cursor: pointer ;
       border-radius: 5px;
+      z-index: -20;
     }
     p {
       color: $red-color;

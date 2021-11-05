@@ -1,7 +1,7 @@
 <template>
-  <div class="modal" @keydown.left.stop="prev()" @keydown.right.stop="next()">
+  <div class="modal" @keydown.left.stop="prev()" @keydown.right.stop="next()" aria-modal="true">
     <div class="slide">
-      <button @click="changeModal('prev')"><i class="fas fa-arrow-left"></i></button>
+      <button @click="changeModal('prev')" aria-label="preview"><i class="fas fa-arrow-left"></i></button>
       <div>
         <img
           v-if="media.image"
@@ -14,10 +14,10 @@
           photographer.name.indexOf(' '))}/${media.video}`)">
         <control></control>
         </video>
-        <p>{{ media.title }}</p>
+        <p aria-label="title of photo">{{ media.title }}</p>
       </div>
-      <button @click="changeModal('next')"><i class="fas fa-arrow-right"></i></button>
-      <button @click="closeModal()" class="close"><i class="fas fa-times"></i></button>
+      <button @click="changeModal('next')" aria-label="next"><i class="fas fa-arrow-right"></i></button>
+      <button @click="closeModal()" class="close" aria-label="close"><i class="fas fa-times"></i></button>
     </div>
   </div>
 </template>

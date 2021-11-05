@@ -1,17 +1,18 @@
 <template>
-  <header class="menu">
+  <header class="menu" role="navigation">
     <router-link :to="{ name:'Home' }">
-      <img alt="Vue logo" :src="require(`@/assets/logo.png`)">
+      <img alt="Vue logo" :src="require(`@/assets/logo.png`)" aria-label="link to home page">
     </router-link>
-    <nav v-if="tags">
+    <nav v-if="tags" role="search" aria-label="filter by tags">
       <button
         v-for="tag in tags" :key="tag"
         @click="changeFilters(tag)"
-        v-bind:class="{ active: filter === tag }">
+        v-bind:class="{ active: filter === tag }"
+        :aria-label="'tag ' + tag">
       {{ "#" + tag }}
       </button>
     </nav>
-    <h1 v-if="tags">Nos photographes</h1>
+    <h1 v-if="tags" aria-label="main title">Nos photographes</h1>
   </header>
 </template>
 

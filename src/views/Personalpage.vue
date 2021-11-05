@@ -12,12 +12,11 @@
       @close-form="closeForm">
     </Contact>
     <Menu v-if="!modal && !contact"></Menu>
-    <div v-if="!modal && !contact && currentPhotographer()" class="counter">
-      <!--  eslint-disable-next-line vue/no-parsing-error -->
-      <span>{{ totalLikes() }}<i class="fas fa-heart" aria-hidden="true"></i></span>
-      <span> {{ currentPhotographer().price }}€ / jour</span>
+    <div v-if="!modal && !contact && currentPhotographer()" class="counter" aria-label="counter likes">
+      <span aria-label="total likes">{{ totalLikes() }}<i class="fas fa-heart" aria-hidden="true"></i></span>
+      <span aria-label="price"> {{ currentPhotographer().price }}€ / jour</span>
     </div>
-    <main v-if="currentPhotographer() && !modal && !contact">
+    <main v-if="currentPhotographer() && !modal && !contact" role="main">
       <Modal
         v-if="modal"
         :media="modal"
@@ -25,29 +24,29 @@
         @close-modal="closeModal">
       </Modal>
       <header>
-        <div>
-          <h1>{{ currentPhotographer().name }}</h1>
-          <address>{{ currentPhotographer().city + ", " + currentPhotographer().country }}</address>
-          <p>{{ currentPhotographer().tagline }}</p>
-          <div class="filters">
-            <span v-for="tag in currentPhotographer().tags" :key="tag">
+        <div aria-label="photograph infos">
+          <h1 aria-label="photograph name">{{ currentPhotographer().name }}</h1>
+          <address aria-label="address">{{ currentPhotographer().city + ", " + currentPhotographer().country }}</address>
+          <p aria-label="tagline">{{ currentPhotographer().tagline }}</p>
+          <div class="filters" aria-label="tags">
+            <span v-for="tag in currentPhotographer().tags" :key="tag" :aria-label="'tag' + tag">
               {{ "#" + tag }}
             </span>
           </div>
         </div>
         <div class="contact">
-          <button @click="contact = true">Contactez-moi</button>
+          <button @click="contact = true" aria-label="access to contact form">Contactez-moi</button>
         </div>
-        <div>
+        <div aria-label="image of photograph">
           <img
             :src="require(`@/assets/Photographers ID Photos/${currentPhotographer().portrait}`)"
             :alt="currentPhotographer().alt">
         </div>
       </header>
 
-      <div class="sort">
+      <div class="sort" aria-labelby="sort" aria-label="sort medias">
         <label for="sort">Trier par</label>
-        <select id="sort" name="sort">
+        <select id="sort" name="sort" v-model="sort">
           <option value="popularity">Popularité</option>
           <option value="date">Date</option>
           <option value="title">Titre</option>
@@ -85,6 +84,7 @@ export default {
     return {
       modal: null,
       contact: false,
+      sort: 'popularity',
     };
   },
   computed: {
@@ -102,7 +102,18 @@ export default {
       return (this.photographer) ? this.photographer(parseInt(this.$route.params.id, 10)) : null;
     },
     currentMedias() {
-      return (this.currentPhotographer()) ? this.medias(this.currentPhotographer().id) : null;
+      if (this.currentPhotographer()) {
+        console.log(this.medias(this.currentPhotographer().id));
+        switch (this.sort) {
+          case 'popularity':
+            return this.medias(this.currentPhotographer().id).sort((a, b) => b.likes - a.likes);
+          case 'title':
+            return this.medias(this.currentPhotographer().id).sort((a, b) => a.title.localeCompare(b.title));
+          default:
+            return this.medias(this.currentPhotographer().id).sort((a, b) => new Date(b.date) - new Date(a.date));
+        }
+      }
+      return null;
     },
     totalLikes() {
       let likes = 0;
@@ -237,6 +248,28 @@ main {
     flex-wrap: wrap;
     justify-content: space-between;
   }
+  .sort {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 2em;
+    select {
+      margin-left: 2em;
+      background-color: $red-color;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      width: 170px;
+      font-size: 18px;
+      font-weight: 700;
+      // Stack above custom arrow
+      z-index: 1;
+      option {
+        font-size: 18px;
+        font-weight: 700;
+        border-bottom: solid white 2px;
+      }
+    }
+  }
 }
 @media (max-width: 1250px) {
   main {
@@ -272,6 +305,7 @@ main {
         position: fixed;
         left: 50%;
         transform: translate(-50%, -50%);
+        z-index: 200;
       }
     }
   }

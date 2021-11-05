@@ -1,18 +1,18 @@
 <template>
   <div>
-    <header>
+    <header role="heading" aria-label="image and name of photograph">
       <img
         :src="require(`@/assets/Photographers ID Photos/${photographer.portrait}`)"
         :alt="photographer.alt">
       <router-link :to="{ name:'Personalpage', params: { id: photographer.id }}">
-        <h2>{{ photographer.name }}</h2>
+        <h2 aria-label="photograph name">{{ photographer.name }}</h2>
       </router-link>
     </header>
-    <address>{{ photographer.city + ", " + photographer.country }} </address>
-    <p>{{photographer.tagline}} </p>
-    <div class="price">{{photographer.price + "€/jour"}}</div>
-    <footer>
-      <span v-for="tag in photographer.tags" :key="tag">
+    <address aria-label="address">{{ photographer.city + ", " + photographer.country }} </address>
+    <p aria-label="tagline">{{photographer.tagline}} </p>
+    <div class="price" aria-label="price">{{photographer.price + "€/jour"}}</div>
+    <footer aria-label="tags og this photographer">
+      <span v-for="tag in photographer.tags" :key="tag" :aria-label="'tag ' + tag">
         {{"#" + tag}}
       </span>
     </footer>

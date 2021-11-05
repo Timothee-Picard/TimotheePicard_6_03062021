@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Menu @change-filter="changeFilter" :tags="tags" :filter="filter"></Menu>
-    <main v-if="photographers">
+    <main v-if="photographers" role="main" aria-label="liste of photographs">
       <article v-for="photographer in filteredPhotographers()" :key="photographer.id">
         <Photographer :photographer="photographer"></Photographer>
       </article>
