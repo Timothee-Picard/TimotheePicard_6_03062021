@@ -255,13 +255,13 @@ main {
     select {
       margin-left: 2em;
       background-color: $red-color;
+      border-radius: 5px;
       color: white;
       border: none;
       padding: 0.5rem 1rem;
       width: 170px;
       font-size: 18px;
       font-weight: 700;
-      // Stack above custom arrow
       z-index: 1;
       option {
         font-size: 18px;
