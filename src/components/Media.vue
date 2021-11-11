@@ -17,7 +17,7 @@
           :src="require(`@/assets/${photographer.name.substring(0,
           photographer.name.indexOf(' '))}/${media.video}`)"></video>
       <figcaption aria-label="title of photo">
-        <p>{{ media.title }}<span>{{media.likes}}<i class="fas fa-heart" aria-hidden="true"></i></span></p>
+        <p>{{ media.title }}<span>{{media.likes}}<i class="fas fa-heart" :class="(liked)? 'liked' :''" aria-hidden="true" @click="(liked)? liked = false : liked = true; (liked)?media.likes+=1:media.likes+=-1"></i></span></p>
       </figcaption>
     </figure>
   </article>
@@ -29,6 +29,11 @@ export default {
   props: {
     photographer: null,
     media: null,
+  },
+  data() {
+    return {
+      liked: false,
+    };
   },
   methods: {
     openModal(media) {
@@ -68,6 +73,11 @@ article {
         font-weight: 700;
         i {
           margin-left: 0.5em;
+          cursor: pointer;
+          color: $gray-color;
+          &.liked {
+            color: $red-color;
+          }
         }
       }
     }

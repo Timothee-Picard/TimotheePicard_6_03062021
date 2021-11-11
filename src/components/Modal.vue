@@ -71,6 +71,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  button {
+    outline: none;
+  }
   .slide {
     border: 2px solid #95FFF9;
     padding: 2%;

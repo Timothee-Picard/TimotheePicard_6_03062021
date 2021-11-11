@@ -44,13 +44,16 @@
         </div>
       </header>
 
-      <div class="sort" aria-labelby="sort" aria-label="sort medias">
+      <div class="sort" :class="(sortOpen)?'active':''" aria-labelby="sort" aria-label="sort medias">
         <label for="sort">Trier par</label>
-        <select id="sort" name="sort" v-model="sort">
-          <option value="popularity">Popularité</option>
-          <option value="date">Date</option>
-          <option value="title">Titre</option>
-        </select>
+        <div class="sort-button">
+          <button @click="(sortOpen)? sortOpen=false : sortOpen=true" id="sort">{{ sort }} <i class="fas fa-chevron-left" :class="(sortOpen)?'active':''"></i></button>
+          <ul v-if="sortOpen">
+            <li @click="sort='Popularité'; sortOpen=false">Popularité</li>
+            <li @click="sort='Date'; sortOpen=false">Date</li>
+            <li @click="sort='Titre'; sortOpen=false">Titre</li>
+          </ul>
+        </div>
       </div>
       <div class="feed">
         <Media
@@ -84,7 +87,8 @@ export default {
     return {
       modal: null,
       contact: false,
-      sort: 'popularity',
+      sort: 'Popularité',
+      sortOpen: false,
     };
   },
   computed: {
@@ -103,11 +107,10 @@ export default {
     },
     currentMedias() {
       if (this.currentPhotographer()) {
-        console.log(this.medias(this.currentPhotographer().id));
         switch (this.sort) {
-          case 'popularity':
+          case 'Popularité':
             return this.medias(this.currentPhotographer().id).sort((a, b) => b.likes - a.likes);
-          case 'title':
+          case 'Titre':
             return this.medias(this.currentPhotographer().id).sort((a, b) => a.title.localeCompare(b.title));
           default:
             return this.medias(this.currentPhotographer().id).sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -143,7 +146,6 @@ export default {
               if (this.medias(this.currentPhotographer().id)[index - 1]) {
                 this.openModal(this.medias(this.currentPhotographer().id)[index - 1]);
               } else {
-                console.log(this.medias(this.currentPhotographer().id).length);
                 this.openModal(this.medias(this.currentPhotographer().id)[this.medias(this.currentPhotographer().id).length - 1]);
               }
             }
@@ -215,6 +217,7 @@ main {
       }
       .filters {
         display: flex;
+        flex-wrap: wrap;
         span {
           margin: 0 10px;
           border: solid 1px$lightGray-color;
@@ -249,24 +252,64 @@ main {
     justify-content: space-between;
   }
   .sort {
-    font-size: 18px;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
     margin-bottom: 2em;
-    select {
-      margin-left: 2em;
-      background-color: $red-color;
-      border-radius: 5px;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      width: 170px;
+    &.active {
+     button {
+       border-bottom-left-radius: 0px;
+       border-bottom-right-radius: 0px;
+     }
+    }
+    &-button{
+      width: 200px;
+    }
+    label {
+      margin-right: 1em;
       font-size: 18px;
       font-weight: 700;
-      z-index: 1;
-      option {
-        font-size: 18px;
-        font-weight: 700;
-        border-bottom: solid white 2px;
+    }
+    button,li {
+      font-size: 18px;
+      font-weight: 700;
+      padding: 0 2em;
+      cursor: pointer;
+      height: 69px;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+    button {
+      background-color: $red-color;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 5px;
+      i{
+        transform: rotate(0deg);
+        transition: transform 0.5s linear;
+      }
+      i.active{
+        transform: rotate(90deg);
+        transition: transform 0.5s linear;
+      }
+    }
+    ul {
+      width: inherit;
+      position: absolute;
+      z-index: 99;
+      li {
+        background-color: $red-color;
+        &:first-of-type {
+          border-top: 2px white solid;
+        }
+        &:not(li:last-of-type){
+          border-bottom: 2px white solid;
+        }
+        &:last-of-type {
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
       }
     }
   }
@@ -279,7 +322,7 @@ main {
       margin: 5em 0;
       div {
         &:first-of-type {
-          width: 70%;
+          width: 50%;
         }
       }
       h1 {
@@ -295,8 +338,11 @@ main {
         right: -1em;
         top: -2em;
       }
-      .filters span {
-        font-size: 15px;
+      .filters{
+        width: 90vw !important;
+        span {
+          font-size: 15px;
+        }
       }
       .contact {
         margin-bottom: 0;
@@ -307,6 +353,9 @@ main {
         transform: translate(-50%, -50%);
         z-index: 200;
       }
+    }
+    .sort{
+      display: none;
     }
   }
   .counter{
