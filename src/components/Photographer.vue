@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header role="heading" aria-label="image and name of photograph">
+    <header aria-label="image and name of photograph">
       <img
         :src="require(`@/assets/Photographers ID Photos/${photographer.portrait}`)"
         :alt="photographer.alt">

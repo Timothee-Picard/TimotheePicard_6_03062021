@@ -44,7 +44,7 @@
         </div>
       </header>
 
-      <div class="sort" :class="(sortOpen)?'active':''" aria-labelby="sort" aria-label="sort medias">
+      <div class="sort" :class="(sortOpen)?'active':''" aria-label="sort medias">
         <label for="sort">Trier par</label>
         <div class="sort-button">
           <button @click="(sortOpen)? sortOpen=false : sortOpen=true" id="sort">{{ sort }} <i class="fas fa-chevron-left" :class="(sortOpen)?'active':''"></i></button>

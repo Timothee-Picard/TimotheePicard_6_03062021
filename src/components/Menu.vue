@@ -1,5 +1,5 @@
 <template>
-  <header class="menu" role="navigation">
+  <header class="menu">
     <router-link :to="{ name:'Home' }">
       <img alt="Vue logo" :src="require(`@/assets/logo.png`)" aria-label="link to home page">
     </router-link>
