@@ -17,12 +17,6 @@
       <span aria-label="price"> {{ currentPhotographer().price }}€ / jour</span>
     </div>
     <main v-if="currentPhotographer() && !modal && !contact" role="main">
-      <Modal
-        v-if="modal"
-        :media="modal"
-        :photographer="currentPhotographer()"
-        @close-modal="closeModal">
-      </Modal>
       <header>
         <div aria-label="photograph infos">
           <h1 aria-label="photograph name">{{ currentPhotographer().name }}</h1>
