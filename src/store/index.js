@@ -52,6 +52,6 @@ export default global.store = new Vuex.Store({
 
   actions,
 
-  strict: true,
+  strict: false,
 
 });

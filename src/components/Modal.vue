@@ -11,9 +11,7 @@
         <video controls
           v-if="media.video"
           :src="require(`@/assets/${photographer.name.substring(0,
-          photographer.name.indexOf(' '))}/${media.video}`)">
-        <control></control>
-        </video>
+          photographer.name.indexOf(' '))}/${media.video}`)" />
         <p aria-label="title of photo">{{ media.title }}</p>
       </div>
       <button @click="changeModal('next')" aria-label="next"><i class="fas fa-arrow-right"></i></button>

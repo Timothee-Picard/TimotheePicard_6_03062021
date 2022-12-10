@@ -50,13 +50,17 @@
         </div>
       </div>
       <div class="feed">
-        <Media
-          v-for="media in currentMedias()"
-          :key="media.id"
-          :media="media"
-          :photographer="currentPhotographer()"
-          @open-modal="openModal">
-        </Media>
+        <div v-for='media in currentMedias()' :key='media.id'>
+          <article role="article" :aria-label="'photo or video took by ' + photographer.name">
+            <figure>
+              <MediaImage v-if="factoryMedias(media).type == 'image'" :media="factoryMedias(media)" :photographer="currentPhotographer()" @open-modal="openModal" />
+              <MediaVideo v-else :media="factoryMedias(media)" :photographer="currentPhotographer()" @open-modal="openModal" />
+              <figcaption aria-label="title of photo">
+                <p>{{ media.title }}<span>{{media.likes}}<i class="fas fa-heart" :class="(media.liked)? 'liked' :''" aria-hidden="true" @click="like(media)"></i></span></p>
+              </figcaption>
+            </figure>
+          </article>
+        </div>
       </div>
     </main>
   </div>
@@ -66,16 +70,20 @@
 import Vuex from 'vuex';
 
 import Menu from '@/components/Menu.vue';
-import Media from '@/components/Media.vue';
 import Modal from '@/components/Modal.vue';
 import Contact from '@/components/Contact.vue';
+import ImageObject from '@/Factory/imageObject';
+import VideoObject from '@/Factory/videoObject';
+import MediaImage from '@/components/MediaImage.vue';
+import MediaVideo from '@/components/MediaVideo.vue';
 
 export default {
   components: {
     Menu,
-    Media,
     Modal,
     Contact,
+    MediaImage,
+    MediaVideo,
   },
   data() {
     return {
@@ -96,6 +104,16 @@ export default {
       'importdatas',
       'settitle',
     ]),
+    factoryMedias(media) {
+      if (media.image) {
+        return new ImageObject(media);
+      }
+      return new VideoObject(media);
+    },
+    like(media) {
+      media.liked ? media.liked = false : media.liked = true;
+      media.liked? media.likes+=1 : media.likes+=-1
+    },
     currentPhotographer() {
       return (this.photographer) ? this.photographer(parseInt(this.$route.params.id, 10)) : null;
     },
@@ -128,7 +146,7 @@ export default {
     changeModal(datas) {
       if (this.currentPhotographer()) {
         for (let index = 0; index < this.medias(this.currentPhotographer().id).length; index++) {
-          if (datas.media === this.medias(this.currentPhotographer().id)[index]) {
+          if (datas.media.id === this.medias(this.currentPhotographer().id)[index].id) {
             if (datas.state === 'next') {
               if (this.medias(this.currentPhotographer().id)[index + 1]) {
                 this.openModal(this.medias(this.currentPhotographer().id)[index + 1]);
@@ -156,6 +174,50 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/var.scss';
+
+article {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  figure {
+    height: 300px;
+    width: 365px;
+    img, video {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      cursor: pointer ;
+      border-radius: 5px;
+      z-index: -20;
+    }
+    p {
+      color: $red-color;
+      display: flex;
+      justify-content: space-between;
+      span {
+        font-weight: 700;
+        i {
+          margin-left: 0.5em;
+          cursor: pointer;
+          color: $gray-color;
+          &.liked {
+            color: $red-color;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 790px) {
+    width: 100%;
+    figure {
+      width: 100%;
+      height: 190px;
+      img,video {
+        width: 100%;
+      }
+    }
+  }
+}
 
 .counter {
   position: fixed;
@@ -244,6 +306,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 2em;
   }
   .sort {
     display: flex;
